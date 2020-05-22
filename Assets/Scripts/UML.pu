@@ -1,0 +1,50 @@
+@startuml
+package BladeRondo
+{
+    package Card
+    {
+        abstract class Card 
+        {
+            +string Name
+            +string EffectText
+            +int Cost
+            +bool Limited
+            +Sprite Face
+
+            {abstract}+bool CanEffect();
+            {abstract}+void Effect();
+            {abstract}+bool CanPlay(int voltage);
+            {abstract}+void Play();
+        }
+
+        package Effects
+        {
+            interface Effects
+        }
+
+        package SowrdCard
+        {
+            class Sword
+        }
+
+        package BreathCard
+        {
+            class Breath
+        }
+    }
+}
+
+class CardController
+{
+    -Card Card
+}
+Card "1" - "1" CardController 
+
+class CardView 
+CardController "1" -- "1" CardView
+
+Card <|-- Sword
+Sword ..|> Effects : 効果にそった物を実装
+Card <|-- Breath
+Breath ..|> Effects
+@enduml

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2557c90aea48ea44a85b83fd4449d190, type: 3}
+  m_Name: Sword11
+  m_EditorClassIdentifier: 
+  Name: "\u30C8\u30EA\u30D3\u30E5\u30FC\u30C8\u30EA\u30EA\u30A3"
+  EffectText: "<color=blue>\u9B54\u6CD5\u653B\u6483(X)</color>\\n\u3053\u306E\u653B\u6483\u306EX\u306F\u3001\u76F8\u624B\u306E\u73FE\u5728\u306E\u30E9\u30A4\u30D5\u306B\u7B49\u3057\u3044\u3002"
+  Cost: 8
+  Limited: 1
+  Face: {fileID: -4849756407313464039, guid: 61052873c2b8b634f8f46fde920f97b4, type: 3}
