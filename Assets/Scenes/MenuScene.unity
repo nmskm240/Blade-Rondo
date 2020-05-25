@@ -189,7 +189,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Create Room
 --- !u!222 &1142845
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 199415305}
   - component: {fileID: 199415304}
   m_Layer: 5
-  m_Name: Button
+  m_Name: CreateRoomButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -895,6 +895,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Room Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1061337242304798232, guid: 5158b68af6de8a047823092da72190cd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5158b68af6de8a047823092da72190cd, type: 3}
 --- !u!1 &1332394018
@@ -1339,6 +1344,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Room Prefab (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1061337242304798232, guid: 5158b68af6de8a047823092da72190cd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5158b68af6de8a047823092da72190cd, type: 3}

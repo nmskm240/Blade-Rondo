@@ -39,7 +39,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1, y: 1}
+  m_SizeDelta: {x: 1.24, y: 1.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &6175747412446735521
 SpriteRenderer:
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 461902021447299037}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f761003bdf08884f84cd9902d9b5f66, type: 3}
+  m_Script: {fileID: 11500000, guid: 755b17998f0e089438dde0ba3cb49e64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cv: {fileID: 3273300425813278828}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 461902021447299037}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a6dcd88c8e339d48a4df91776cd9304, type: 3}
+  m_Script: {fileID: 11500000, guid: c14b3ce20fd9baa41a8f5ea2e095cbd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sp: {fileID: 6175747412446735521}
@@ -180,7 +180,8 @@ MonoBehaviour:
   prefixField: -1
   Synchronization: 0
   OwnershipTransfer: 0
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 0}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

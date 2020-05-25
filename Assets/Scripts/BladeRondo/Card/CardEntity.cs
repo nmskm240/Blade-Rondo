@@ -1,11 +1,19 @@
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "CardEntity", menuName = "Blade Rondo/CardEntity", order = 0)]
-public class CardEntity : ScriptableObject 
+namespace BladeRondo.Card
 {
-        public string Name;
-        public string EffectText;
-        public int Cost;
-        public bool Limited;
-        public Sprite Face;
+        using UnityEngine;
+
+        [CreateAssetMenu(fileName = "CardEntity", menuName = "Blade Rondo/CardEntity", order = 0)]
+        /**
+        <summary>
+        カード情報をUnityで管理するためのコード
+        <summary>
+        */
+        public class CardEntity : ScriptableObject 
+        {
+                public string Name;
+                public string EffectText;
+                public int Cost;
+                public bool Limited;
+                public Sprite Face;
+        }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using BladeRondo.System;
 
 public class GameManager : MonoBehaviour 
 {

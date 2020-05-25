@@ -3,7 +3,12 @@ package BladeRondo
 {
     package Card
     {
-        abstract class Card 
+        class CardController
+
+        class CardView
+        CardController "1" -- "1" CardView
+
+        abstract class Card
         {
             +string Name
             +string EffectText
@@ -34,14 +39,20 @@ package BladeRondo
     }
 }
 
-class CardController
+package UnityEngine
 {
-    -Card Card
+    package EventSystems
+    {
+        interface IDragHandler
+        interface IBeginDragHandler
+        interface IEndDragHandler
+    }
 }
-Card "1" - "1" CardController 
 
-class CardView 
-CardController "1" -- "1" CardView
+IBeginDragHandler<|..CardController
+IDragHandler<|..CardController
+IEndDragHandler<|..CardController
+
 
 Card <|-- Sword
 Sword ..|> Effects : 効果にそった物を実装
