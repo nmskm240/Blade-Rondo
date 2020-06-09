@@ -1,6 +1,7 @@
 namespace BladeRondo.Card
 {
     using UnityEngine;
+    using UnityEngine.UI;
     using BladeRondo.Card;
 
     /// <summary>
@@ -9,11 +10,16 @@ namespace BladeRondo.Card
     public class CardView : MonoBehaviour
     {
         [SerializeField]
-        private SpriteRenderer sp;
+        private Image Image;
+        [SerializeField]
+        private Text CardNameText;
 
         public void ToggleFace(bool IsShow)
         {
-            sp.sprite = GetComponent<Card>().Face;
+            Card card = GetComponent<Card>();
+            Image.sprite = Resources.Load<Sprite>("Textures/CardFace");
+            CardNameText.text = card.Name;
+            //card text load
         }
     }
 }

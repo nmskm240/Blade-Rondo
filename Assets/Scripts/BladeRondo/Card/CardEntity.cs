@@ -14,6 +14,5 @@ namespace BladeRondo.Card
                 public string EffectText;
                 public int Cost;
                 public bool Limited;
-                public Sprite Face;
         }
 }

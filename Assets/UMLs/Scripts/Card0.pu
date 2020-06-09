@@ -6,7 +6,6 @@ package BladeRondo
         class CardController
 
         class CardView
-        CardController "1" -- "1" CardView
 
         abstract class Card
         {

@@ -29,11 +29,6 @@
         public bool Limited;
 
         /// <summary>
-        /// カードの表面
-        /// </summary>
-        public Sprite Face;
-
-        /// <summary>
         /// カードの効果の発動確認
         /// </summary>
         /// <remarks>発動可能：true|発動不可：false</remarks>

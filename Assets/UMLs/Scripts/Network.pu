@@ -1,0 +1,18 @@
+@startuml
+actor Player
+card TitleScene
+card MenuScene
+card GameScene
+card ConnectServer
+card CreateRoomButton
+card RoomInButton
+
+TitleScene -- ConnectServer : サーバー接続
+ConnectServer --|> MenuScene : LoadScene
+MenuScene -- CreateRoomButton
+MenuScene -- RoomInButton
+CreateRoomButton --|> GameScene : LoadScene
+RoomInButton --|> GameScene
+
+
+@enduml

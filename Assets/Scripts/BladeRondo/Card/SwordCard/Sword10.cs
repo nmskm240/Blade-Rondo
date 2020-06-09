@@ -13,7 +13,6 @@ namespace BladeRondo.Card.SwordCard
             this.EffectText = c.EffectText;
             this.Cost = c.Cost;
             this.Limited = c.Limited;
-            this.Face = c.Face;
         }
 
         public override bool CanEffect()

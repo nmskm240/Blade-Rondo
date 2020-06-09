@@ -16,9 +16,4 @@ public class RoomNode : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.JoinRoom(RoomName.text);
     }
-
-    public override void OnJoinedRoom()
-    {
-        Debug.Log(PhotonNetwork.CurrentRoom.Name);
-    }
 }
