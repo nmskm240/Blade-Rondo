@@ -35,6 +35,12 @@ package BladeRondo
         {
             class Breath
         }
+
+        package State
+        {
+            interface ICardState
+            class State
+        }
     }
 }
 
@@ -52,6 +58,7 @@ IBeginDragHandler<|..CardController
 IDragHandler<|..CardController
 IEndDragHandler<|..CardController
 
+State ..|> ICardState
 
 Card <|-- Sword
 Sword ..|> Effects : 効果にそった物を実装

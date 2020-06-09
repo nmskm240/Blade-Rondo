@@ -8,12 +8,9 @@ namespace BladeRondo.Card
     /// </summary>
     public class CardController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
     {
-        [SerializeField]
-        private CardView cv;
-
         public void Init()
         {
-            cv.ToggleFace(true);
+            GetComponent<CardView>().ToggleFace(true);
         }
 
         public void OnBeginDrag(PointerEventData e)

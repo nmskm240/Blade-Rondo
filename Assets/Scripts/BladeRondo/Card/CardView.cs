@@ -10,15 +10,15 @@ namespace BladeRondo.Card
     public class CardView : MonoBehaviour
     {
         [SerializeField]
-        private Image Image;
+        private SpriteRenderer spriteRenderer;
         [SerializeField]
-        private Text CardNameText;
+        private Text CardName;
 
         public void ToggleFace(bool IsShow)
         {
             Card card = GetComponent<Card>();
-            Image.sprite = Resources.Load<Sprite>("Textures/CardFace");
-            CardNameText.text = card.Name;
+            spriteRenderer.sprite = Resources.Load<Sprite>("Textures/CardFace");
+            CardName.text = card.Name;
             //card text load
         }
     }
