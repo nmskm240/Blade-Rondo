@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class MenuManager : MonoBehaviourPunCallbacks 
 {
@@ -10,15 +12,15 @@ public class MenuManager : MonoBehaviourPunCallbacks
     private GameObject BattleButton;
     [SerializeField]
     private GameObject DeckEditButton;
-    [SerializeField]
-    private GameObject RoomDialog;
+
+    public void Awake()
+    {
+        PhotonNetwork.LocalPlayer.NickName = "Guest" + Random.Range(1000, 9999);
+    }
 
     public void OnClickBattleButton()
     {
-        GameObject obj = BattleButton.transform.parent.gameObject;
-        obj.SetActive(false);
-        RoomDialog.SetActive(true);
-        BackButton.SetActive(true);
+        SceneController.Instance.LoadScene("LobbyScene");
         PhotonNetwork.JoinLobby();   
     }
 
@@ -26,19 +28,5 @@ public class MenuManager : MonoBehaviourPunCallbacks
     {
         //Load deck edit scene
         BackButton.SetActive(true);
-    }
-
-    public void OnClickBackButton()
-    {
-        GameObject obj = BattleButton.transform.parent.gameObject;
-        obj.SetActive(true);
-        RoomDialog.SetActive(false);
-        BackButton.SetActive(false);
-        PhotonNetwork.LeaveLobby();
-    }
-
-    public override void OnJoinedRoom()
-    {
-        SceneManager.LoadScene("GameScene");
     }
 }

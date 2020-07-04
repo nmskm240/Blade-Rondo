@@ -13,13 +13,16 @@ namespace BladeRondo.Card
         private SpriteRenderer spriteRenderer;
         [SerializeField]
         private Text CardName;
+        [SerializeField]
+        private Sprite CardFace;
+        [SerializeField]
+        private Sprite CardBack;
 
         public void ToggleFace(bool IsShow)
         {
             Card card = GetComponent<Card>();
-            spriteRenderer.sprite = Resources.Load<Sprite>("Textures/CardFace");
-            CardName.text = card.Name;
-            //card text load
+            spriteRenderer.sprite = (IsShow)? CardFace : CardBack;
+            CardName.text = (IsShow)? card.Name : "";
         }
     }
 }

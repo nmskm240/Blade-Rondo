@@ -9,7 +9,7 @@ public class RoomList : MonoBehaviourPunCallbacks
     private GameObject Content;
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        Debug.Log("room list update");
+        Debug.Log("room list update" + roomList.Count);
         DestoryAllRoomNode();
         foreach(RoomInfo room in roomList)
         {

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using Photon.Realtime;
 using Photon.Pun;
 
@@ -14,6 +13,7 @@ public class CreateRoomButton : MonoBehaviourPunCallbacks
 
     public void OnClick()
     {
+        SceneController.Instance.LoadScene("RoomScene");
         PhotonNetwork.CreateRoom("", roomOptions);
     }
 }

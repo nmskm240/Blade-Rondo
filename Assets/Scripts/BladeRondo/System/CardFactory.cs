@@ -3,6 +3,8 @@ namespace BladeRondo.System
 {
     using UnityEngine;
     using BladeRondo.Card;
+    using Photon.Pun;
+    using Photon.Realtime;
 
     /// <summary>
     /// カードを作成するクラス
@@ -36,7 +38,7 @@ namespace BladeRondo.System
         /// <returns>作成されたカードオブジェクト</returns>
         public GameObject Create(string id)
         {
-            GameObject obj = Instantiate(Resources.Load<GameObject>("Prefabs/Card Prefab"));
+            GameObject obj = PhotonNetwork.Instantiate("Prefabs/Card Prefab", new Vector3(0, 0, 0), new Quaternion(0, 0, 0, 0));
             obj.AddComponent(Type.GetType(((id.Contains("Sword")) ? SwordNameSpace : BreathNamespace) + id));
             obj.GetComponent<CardController>().Init();
             return obj;
