@@ -6,5 +6,13 @@ using Photon.Realtime;
 
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
+    private void Awake()
+    {
+        Init();
+    }
 
+    private void Init()
+    {
+        SceneController.Instance.LoadScene("TitleScene");
+    }
 }

@@ -15,5 +15,6 @@ public class RoomNode : MonoBehaviourPunCallbacks
     public void JoinRoom()
     {
         PhotonNetwork.JoinRoom(RoomName.text);
+        SceneController.Instance.LoadScene("RoomScene");
     }
 }
