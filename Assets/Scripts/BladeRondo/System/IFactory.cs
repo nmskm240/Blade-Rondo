@@ -1,9 +1,7 @@
 namespace BladeRondo.System
 {
-    using UnityEngine;
-
-    public interface IFactory
+    public interface IFactory<T> 
     {
-        GameObject Create(string id);
+        T Create(string str);
     }
 }

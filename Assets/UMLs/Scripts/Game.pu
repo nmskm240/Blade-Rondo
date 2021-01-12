@@ -1,0 +1,137 @@
+@startuml
+package BladeRondo
+{
+    package Game
+    {
+        package Component
+        {
+            package CardState
+            {
+                class None
+                class Usable
+                class Unusable
+                class SetResponce
+                class Attack
+                class Attacked
+                class ActivatableAbility
+                class ActivatedAbility
+                class Discard
+            }
+            class Card
+            {
+                +<<property>>Id:int{private set}
+                +<<property>>Name:string{private set}
+                +<<property>>AbilityText:string{private set}
+                +<<property>>Cost:int{private set}
+                +<<property>>Limited:bool{private set}
+                +<<property>>Symbol:CardType{private set}
+                +<<property>>Face:Sprite{private set}
+                +<<property>>StatusType:CardStateType
+                +<<property>>Status:IState
+                --
+                +<<delegate>>Ability():void
+                +Abilities:Ability
+                +<<delegate>>Check():bool
+                +CanPlay:Check
+                +CanActivateAbility:Check
+                --
+                Init(Id:int):void
+            }
+            class CardData
+            {
+                -id:int
+                -name:string
+                -abilityText:string
+                -cost:int
+                -limited:bool
+                -symbol:CardType
+                -face:Sprite
+                +<<property>>Id:int{get only}
+                +<<property>>Name:string{get only}
+                +<<property>>AbilityText:string{get only}
+                +<<property>>Cost:int{get only}
+                +<<property>>Limited:bool{get only}
+                +<<property>>Symbol:CardType{get only}
+                +<<property>>Face:Sprite{get only}
+            }
+            class CardView
+            {
+                -Back:Sprite
+                +ToggleFace(IsFace:bool):void
+            }
+            class CardController
+            class CardAbilityUtil
+            class CardPlayCheckUtil
+            class CardAbilityCheckUtil
+            class Hand
+            class Graveyard
+            class PlayArea
+            class SetArea
+            class BreathArea
+            enum CardStateType
+            {
+                None,
+                Usable,
+                Unusable,
+                SetResponce,
+                Attack,
+                Attacked,
+                ActivatableAbility,
+                ActivatedAbility,
+                Discard,
+            }
+            enum CardType
+            {
+                Breath
+                Physical
+                Magical
+                Support
+                Trap
+            }
+        }
+        class CardFactory
+    }
+    package System
+    {
+        interface IFactory<T>
+        {
+            +Create(str:string):T
+        }
+        interface IState
+        {
+            +Execute():void
+        }
+    }
+}
+
+IState <|.. None
+IState <|.. Usable
+IState <|.. Unusable
+IState <|.. Attack
+IState <|.. Attacked
+IState <|.. ActivatableAbility
+IState <|.. ActivatedAbility
+IState <|.. Discard
+IState <|.. SetResponce
+
+IFactory <|. CardFactory
+CardFactory ..> Card : create
+Card ..> CardData : read
+Card ..> CardAbilityUtil : set delegate
+Card ..> CardAbilityCheckUtil : set delegate
+Card ..> CardPlayCheckUtil : set delegate
+ScriptableObject <|-- CardData
+IBeginDragHandler <|.. CardController
+IDragHandler <|.. CardController
+IEndDrafHandler <|.. CardController
+IDropHandler <|.. PlayArea
+PlayArea ..> SetArea
+PlayArea ..> Hand
+Hand ..> PlayArea
+Hand ..> Graveyard
+PlayArea ..> Graveyard
+SetArea ..> Graveyard
+BreathArea ..> PlayArea
+BreathArea ..> Graveyard
+PlayArea ..> BreathArea
+@enduml
