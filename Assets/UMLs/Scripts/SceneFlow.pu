@@ -1,0 +1,10 @@
+@startuml
+
+[*] --> TitleScene
+TitleScene --> MenuScene : サーバー接続時
+MenuScene --> RoomScene : ルーム入室時
+RoomScene --> MenuScene : ルーム退出時
+RoomScene --> GameScene : ゲーム開始時
+GameScene --> MenuScene : ゲーム終了時
+
+@enduml

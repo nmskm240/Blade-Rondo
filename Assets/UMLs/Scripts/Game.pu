@@ -25,9 +25,9 @@ package BladeRondo
                 +<<property>>Cost:int{private set}
                 +<<property>>Limited:bool{private set}
                 +<<property>>Symbol:CardType{private set}
+                +<<property>>AttackPower:int{private set}
+                +<<property>>Responceable:List<CardTYpe>{private set}
                 +<<property>>Face:Sprite{private set}
-                +<<property>>StatusType:CardStateType
-                +<<property>>Status:IState
                 --
                 +<<delegate>>Ability():void
                 +Abilities:Ability
@@ -45,6 +45,8 @@ package BladeRondo
                 -cost:int
                 -limited:bool
                 -symbol:CardType
+                -attackPower:int
+                -responceable:List<CardType>
                 -face:Sprite
                 +<<property>>Id:int{get only}
                 +<<property>>Name:string{get only}
@@ -52,12 +54,20 @@ package BladeRondo
                 +<<property>>Cost:int{get only}
                 +<<property>>Limited:bool{get only}
                 +<<property>>Symbol:CardType{get only}
+                +<<property>>AttackPower:int{get only}
+                +<<property>>Responceable:List<CardType>{get only}
                 +<<property>>Face:Sprite{get only}
             }
             class CardView
             {
                 -Back:Sprite
-                +ToggleFace(IsFace:bool):void
+                -Face:Image
+                +ToggleFace(isFace:bool):void
+            }
+            class CardState
+            {
+                +<<property>>StatusType:CardStateType{private set}
+                +<<property>>Status:IState
             }
             class CardController
             class CardAbilityUtil
@@ -66,8 +76,6 @@ package BladeRondo
             class Hand
             class Graveyard
             class PlayArea
-            class SetArea
-            class BreathArea
             enum CardStateType
             {
                 None,
@@ -91,6 +99,32 @@ package BladeRondo
         }
         class CardFactory
     }
+    package Network
+    {
+        package CustomProperties
+        {
+            package Players
+            {
+                class HP
+                class "Attack "
+                class Defence
+                class Voltage
+
+                class StartCheck
+            }
+            package Rooms
+            {
+
+            }
+        }
+        interface IConnecter
+        class ServerConnecter
+        class RoomConnecter
+        class GameConnecter
+        class RoomCreater
+        class RoomExiter
+        class RoomJoiner
+    }
     package System
     {
         interface IFactory<T>
@@ -101,37 +135,45 @@ package BladeRondo
         {
             +Execute():void
         }
+        class DebugManager
+        class TurnManager
+    }
+    package UI
+    {
+        class CardDropArea
+        class RoomIdViewer
+        class PlayerNode
+        class GameStartChecker
     }
 }
 
-IState <|.. None
-IState <|.. Usable
-IState <|.. Unusable
-IState <|.. Attack
-IState <|.. Attacked
-IState <|.. ActivatableAbility
-IState <|.. ActivatedAbility
-IState <|.. Discard
-IState <|.. SetResponce
+IState <|.down. None
+IState <|.down. Usable
+IState <|.down. Unusable
+IState <|.down. Attack
+IState <|.down. Attacked
+IState <|.down. ActivatableAbility
+IState <|.down. ActivatedAbility
+IState <|.down. Discard
+IState <|.down. SetResponce
 
-IFactory <|. CardFactory
-CardFactory ..> Card : create
+IFactory <|.down. CardFactory
+CardFactory .down.> Card : create
 Card ..> CardData : read
 Card ..> CardAbilityUtil : set delegate
 Card ..> CardAbilityCheckUtil : set delegate
 Card ..> CardPlayCheckUtil : set delegate
-ScriptableObject <|-- CardData
+ScriptableObject <|-up- CardData
 IBeginDragHandler <|.. CardController
 IDragHandler <|.. CardController
 IEndDrafHandler <|.. CardController
-IDropHandler <|.. PlayArea
-PlayArea ..> SetArea
+IDropHandler <|.. CardDropArea
 PlayArea ..> Hand
 Hand ..> PlayArea
 Hand ..> Graveyard
 PlayArea ..> Graveyard
-SetArea ..> Graveyard
-BreathArea ..> PlayArea
-BreathArea ..> Graveyard
-PlayArea ..> BreathArea
+
+IConnecter <|.. ServerConnecter
+IConnecter <|.. RoomConnecter
+IConnecter <|.. GameConnecter
 @enduml

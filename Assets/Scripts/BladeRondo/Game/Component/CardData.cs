@@ -1,5 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FieldShowIf.Enum;
 
 namespace BladeRondo.Game.Component
 {    
@@ -18,6 +21,10 @@ namespace BladeRondo.Game.Component
         private bool limited;
         [SerializeField]
         private CardType symbol;
+        [SerializeField, ShowChange(nameof(CardType.Magical), nameof(symbol))]
+        private int attackPower;
+        [SerializeField, ShowChange(nameof(CardType.Trap), nameof(symbol))]
+        private List<CardType> responceable;
         [SerializeField]
         private Sprite face;
 
@@ -27,6 +34,8 @@ namespace BladeRondo.Game.Component
         public int Cost { get { return cost; } } 
         public bool Limited { get { return limited; } } 
         public CardType Symbol { get { return symbol; } } 
+        public int AttackPower { get { return attackPower; } }
+        public List<CardType> Responceable { get { return responceable; } }
         public Sprite Face { get { return face; } } 
     }
 }
