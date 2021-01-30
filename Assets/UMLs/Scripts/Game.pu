@@ -28,14 +28,17 @@ package BladeRondo
                 +<<property>>AttackPower:int{private set}
                 +<<property>>Responceable:List<CardTYpe>{private set}
                 +<<property>>Face:Sprite{private set}
+                +<<property>>InHand:bool{get only}
                 --
                 +<<delegate>>Ability():void
                 +Abilities:Ability
                 +<<delegate>>Check():bool
-                +CanPlay:Check
                 +CanActivateAbility:Check
                 --
                 Init(Id:int):void
+                CanPlay():bool
+                Play():void
+                PayCost():void
             }
             class CardData
             {
@@ -47,7 +50,6 @@ package BladeRondo
                 -symbol:CardType
                 -attackPower:int
                 -responceable:List<CardType>
-                -face:Sprite
                 +<<property>>Id:int{get only}
                 +<<property>>Name:string{get only}
                 +<<property>>AbilityText:string{get only}
@@ -56,17 +58,18 @@ package BladeRondo
                 +<<property>>Symbol:CardType{get only}
                 +<<property>>AttackPower:int{get only}
                 +<<property>>Responceable:List<CardType>{get only}
-                +<<property>>Face:Sprite{get only}
             }
             class CardView
             {
+                -FaceDetail:GameObject
                 -Back:Sprite
                 -Face:Image
+                +Init(card:Card):void
                 +ToggleFace(isFace:bool):void
             }
             class CardState
             {
-                +<<property>>StatusType:CardStateType{private set}
+                +<<property>>StatusType:CardStateType
                 +<<property>>Status:IState
             }
             class CardController
@@ -76,6 +79,9 @@ package BladeRondo
             class Hand
             class Graveyard
             class PlayArea
+            {
+                +Put():void
+            }
             enum CardStateType
             {
                 None,
@@ -117,6 +123,15 @@ package BladeRondo
 
             }
         }
+        package RaiseEvents
+        {
+            class PutCard
+            class RaiseEventPractitioner
+            enum RaiseEventType
+            {
+                PutCard
+            }
+        }
         interface IConnecter
         class ServerConnecter
         class RoomConnecter
@@ -129,7 +144,7 @@ package BladeRondo
     {
         interface IFactory<T>
         {
-            +Create(str:string):T
+            +Create(str:string, b:bool):T
         }
         interface IState
         {
@@ -144,6 +159,8 @@ package BladeRondo
         class RoomIdViewer
         class PlayerNode
         class GameStartChecker
+        class Counter
+        class PlayerParameters
     }
 }
 
@@ -168,12 +185,12 @@ IBeginDragHandler <|.. CardController
 IDragHandler <|.. CardController
 IEndDrafHandler <|.. CardController
 IDropHandler <|.. CardDropArea
-PlayArea ..> Hand
-Hand ..> PlayArea
-Hand ..> Graveyard
-PlayArea ..> Graveyard
 
 IConnecter <|.. ServerConnecter
 IConnecter <|.. RoomConnecter
 IConnecter <|.. GameConnecter
+
+IOnEventCallback <|.. RaiseEventPractitioner
+
+PlayerParameters -- Counter
 @enduml

@@ -4,7 +4,7 @@ namespace BladeRondo.Game.Component
 {    
     public class PlayArea : MonoBehaviour
     {
-        public void UseCard(GameObject card)
+        public void Put(GameObject card)
         {
             card.transform.SetParent(this.transform);
         }

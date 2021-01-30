@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 using BladeRondo.Game.Component.CardState;
+using BladeRondo.Network.CustomProperties.Players;
 using BladeRondo.System;
 
 namespace BladeRondo.Game.Component
@@ -18,14 +21,12 @@ namespace BladeRondo.Game.Component
         public int AttackPower { get; private set; }
         public List<CardType> Responceable { get; private set; }
         public Sprite Face { get; private set; }
-        public CardStateType StatusType { get; set; }
-        public IState Status { get; set; }
+        public bool InHand { get { return this.transform.parent.gameObject.name == "Hand"; } }
 
         public delegate void Ability();
         public delegate bool Check();
 
         public Ability Abilities;
-        public Check CanPlay;
         public Check CanActivateAbility;
 
         public void Init(int id)
@@ -39,7 +40,27 @@ namespace BladeRondo.Game.Component
             Symbol = data.Symbol;
             AttackPower = data.AttackPower;
             Responceable = data.Responceable;
-            Face = data.Face;
+            var face = Resources.Load("Textures/" + id.ToString(), typeof(Sprite)) as Sprite;
+            Face = (face == null) ? Resources.Load("Textures/CardFace", typeof(Sprite)) as Sprite : face;
+        }
+
+        public bool CanPlay()
+        {
+            return PhotonNetwork.LocalPlayer.GetNowVoltage() >= Cost;
+        }
+
+        [PunRPC]
+        public void Play()
+        {
+            var player = this.transform.parent.parent.gameObject;
+            var playArea = player.transform.Find("PlayArea").gameObject;
+            this.transform.SetParent(playArea.transform);
+        } 
+
+        public void PayCost()
+        {
+            var voltage = PhotonNetwork.LocalPlayer.GetNowVoltage();
+            PhotonNetwork.LocalPlayer.SetNowVoltage(voltage - Cost);
         }
     }
 }

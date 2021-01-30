@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ba98ff72eb6d114b9065ba8e4ff45b8, type: 3}
+  m_Name: 7
+  m_EditorClassIdentifier: 
+  id: 7
+  name: "\u610F\u5FD7\u7815\u304D\u306E\u9248"
+  abilityText: "\u8FFD\u52A0\uFF1A\u76F8\u624B\u306F\u81EA\u5206\u306E\u624B\u672D\u30923\u679A\u9078\u3093\u3067\u516C\u958B\u3059\u308B\u3002\\n\u3042\u306A\u305F\u306F\u305D\u306E\u4E2D\u304B\u30891\u679A\u3092\u9078\u3093\u3067\u6368\u3066\u672D\u306B\u3059\u308B\u3002\\n\u9078\u3070\u306A\u304B\u3063\u305F\u30AB\u30FC\u30C9\u306F\u76F8\u624B\u306E\u624B\u672D\u306B\u623B\u3059\u3002"
+  cost: 3
+  limited: 1
+  symbol: 1
+  attackPower: 0
+  responceable: 

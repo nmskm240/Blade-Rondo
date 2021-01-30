@@ -25,8 +25,6 @@ namespace BladeRondo.Game.Component
         private int attackPower;
         [SerializeField, ShowChange(nameof(CardType.Trap), nameof(symbol))]
         private List<CardType> responceable;
-        [SerializeField]
-        private Sprite face;
 
         public int Id { get { return id; } } 
         public string Name { get { return name; } } 
@@ -36,6 +34,5 @@ namespace BladeRondo.Game.Component
         public CardType Symbol { get { return symbol; } } 
         public int AttackPower { get { return attackPower; } }
         public List<CardType> Responceable { get { return responceable; } }
-        public Sprite Face { get { return face; } } 
     }
 }

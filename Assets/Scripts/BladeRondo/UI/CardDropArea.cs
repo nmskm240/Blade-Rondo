@@ -1,19 +1,27 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
 using BladeRondo.Game.Component;
+using BladeRondo.Network.RaiseEvents;
 
 namespace BladeRondo.UI
 {  
     public class CardDropArea : MonoBehaviour, IDropHandler 
     {
-        [SerializeField]
-        private GameObject PlayArea;
-
         public void OnDrop(PointerEventData e)
         {
             if(e.pointerDrag != null)
             {
-                PlayArea.GetComponent<PlayArea>().UseCard(e.pointerDrag);
+                var go = e.pointerDrag;
+                var card = go.GetComponent<Card>();
+                var photonView = go.GetComponent<PhotonView>();
+                if(card.CanPlay())
+                {
+                    card.PayCost();
+                    photonView.RPC("Play", RpcTarget.All);
+                }
             }
         }
     }

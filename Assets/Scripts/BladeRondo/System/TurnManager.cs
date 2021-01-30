@@ -1,6 +1,8 @@
 using UnityEngine;
+using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
+using BladeRondo.Network.CustomProperties.Players;
 
 namespace BladeRondo.System
 {    
@@ -14,9 +16,23 @@ namespace BladeRondo.System
             turnManager.TurnManagerListener = this;
         }
 
+        private void Start()
+        {
+            PhotonNetwork.LocalPlayer.SetHP(15);
+            PhotonNetwork.LocalPlayer.SetMaxVoltage(0);
+            PhotonNetwork.LocalPlayer.SetNowVoltage(0);
+            PhotonNetwork.LocalPlayer.SetAttack(0);
+            PhotonNetwork.LocalPlayer.SetDefence(0);
+            if(PhotonNetwork.IsMasterClient)
+            {
+                turnManager.BeginTurn();
+            }
+        }
+
         public void OnTurnBegins(int turn)
         {
-
+            PhotonNetwork.LocalPlayer.SetNowVoltage(PhotonNetwork.LocalPlayer.GetMaxVoltage() + 1);
+            PhotonNetwork.LocalPlayer.AddMaxVoltage(1);
         }
 
         public void OnTurnCompleted(int turn)
@@ -37,6 +53,11 @@ namespace BladeRondo.System
         public void OnTurnTimeEnds(int turn)
         {
 
+        }
+
+        public void TurnEnd()
+        {
+            turnManager.SendMove(null, true);
         }
     }
 }
