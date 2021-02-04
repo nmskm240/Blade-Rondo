@@ -49,14 +49,6 @@ namespace BladeRondo.Game.Component
             return PhotonNetwork.LocalPlayer.GetNowVoltage() >= Cost;
         }
 
-        [PunRPC]
-        public void Play()
-        {
-            var player = this.transform.parent.parent.gameObject;
-            var playArea = player.transform.Find("PlayArea").gameObject;
-            this.transform.SetParent(playArea.transform);
-        } 
-
         public void PayCost()
         {
             var voltage = PhotonNetwork.LocalPlayer.GetNowVoltage();

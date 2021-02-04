@@ -29,5 +29,17 @@ namespace BladeRondo.Network.CustomProperties.Players
 
             return (int)player.CustomProperties[AttackPros];
         }
+
+        public static void AddAttack(this Player player, int num)
+        {
+            if(player == null || player.CustomProperties == null)
+            {
+                return;
+            }
+
+            var hashtable = new Hashtable();
+            hashtable[AttackPros] = player.GetAttack() + num;
+            player.SetCustomProperties(hashtable);
+        }
     }
 }

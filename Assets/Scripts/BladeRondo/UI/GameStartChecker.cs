@@ -14,8 +14,8 @@ namespace BladeRondo.UI
         {
             GetComponent<Button>().onClick.AddListener(() => 
             {
-                this.transform.GetChild(0).gameObject.GetComponent<Text>().text = (PhotonNetwork.LocalPlayer.GetStartcheck()) ? "準備完了" : "キャンセル";
-                PhotonNetwork.LocalPlayer.SetStartCheck((PhotonNetwork.LocalPlayer.GetStartcheck()) ? false : true); 
+                this.transform.GetChild(0).gameObject.GetComponent<Text>().text = (PhotonNetwork.LocalPlayer.GetStartCheck()) ? "準備完了" : "キャンセル";
+                PhotonNetwork.LocalPlayer.SetStartCheck((PhotonNetwork.LocalPlayer.GetStartCheck()) ? false : true); 
             });    
         }
 
@@ -28,7 +28,7 @@ namespace BladeRondo.UI
             }
             foreach(var player in PhotonNetwork.PlayerList)
             {
-                isReady = isReady && player.GetStartcheck();
+                isReady = isReady && player.GetStartCheck();
             }
             return isReady;
         }

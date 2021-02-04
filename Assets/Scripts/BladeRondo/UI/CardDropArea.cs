@@ -20,7 +20,7 @@ namespace BladeRondo.UI
                 if(card.CanPlay())
                 {
                     card.PayCost();
-                    photonView.RPC("Play", RpcTarget.All);
+                    photonView.RPC("ChangeParent", RpcTarget.All, "PlayArea");
                 }
             }
         }

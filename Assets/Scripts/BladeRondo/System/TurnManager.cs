@@ -1,8 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
+using BladeRondo.Game.Component;
 using BladeRondo.Network.CustomProperties.Players;
+using BladeRondo.Network.CustomProperties.Rooms;
+using BladeRondo.System.TurnState.Phases;
 
 namespace BladeRondo.System
 {    
@@ -10,19 +15,23 @@ namespace BladeRondo.System
     {
         [SerializeField]
         private PunTurnManager turnManager;
+        [SerializeField]
+        private GameObject Players;
+
+        private IState NowPhase;
 
         private void Awake() 
         {
             turnManager.TurnManagerListener = this;
         }
 
-        private void Start()
+        private IEnumerator Start()
         {
-            PhotonNetwork.LocalPlayer.SetHP(15);
-            PhotonNetwork.LocalPlayer.SetMaxVoltage(0);
-            PhotonNetwork.LocalPlayer.SetNowVoltage(0);
-            PhotonNetwork.LocalPlayer.SetAttack(0);
-            PhotonNetwork.LocalPlayer.SetDefence(0);
+            NowPhase = new FirstPick();
+            NowPhase.Execute();
+            yield return new WaitWhile( () => PhotonNetwork.LocalPlayer.GetStartCheck() || PhotonNetwork.PlayerListOthers[0].GetStartCheck() );
+            NowPhase = new BattleSetup();
+            NowPhase.Execute();
             if(PhotonNetwork.IsMasterClient)
             {
                 turnManager.BeginTurn();
@@ -31,13 +40,25 @@ namespace BladeRondo.System
 
         public void OnTurnBegins(int turn)
         {
-            PhotonNetwork.LocalPlayer.SetNowVoltage(PhotonNetwork.LocalPlayer.GetMaxVoltage() + 1);
-            PhotonNetwork.LocalPlayer.AddMaxVoltage(1);
+            if(PhotonNetwork.CurrentRoom.GetTurnPlayer() == PhotonNetwork.LocalPlayer)
+            {
+                NowPhase = new Standby();
+                NowPhase.Execute();
+            }
+            else
+            {
+                TurnEnd();
+            }
         }
 
         public void OnTurnCompleted(int turn)
         {
-
+            if(PhotonNetwork.CurrentRoom.GetTurnPlayer() == PhotonNetwork.LocalPlayer)
+            {
+                var nextPlayer = PhotonNetwork.CurrentRoom.GetTurnPlayer().GetNext();
+                PhotonNetwork.CurrentRoom.SetTurnPlayer(nextPlayer);
+            }
+            turnManager.BeginTurn();
         }
 
         public void OnPlayerMove(Player player, int turn, object move)
@@ -57,6 +78,20 @@ namespace BladeRondo.System
 
         public void TurnEnd()
         {
+            // var photonViews = new List<PhotonView>();
+            // foreach(Transform tf in Players.transform.Find("Player").transform.Find("PlayArea"))
+            // {
+            //     var card = tf.gameObject.GetComponent<Card>();
+            //     var cardView = tf.gameObject.GetComponent<CardView>();
+            //     if(cardView.IsShowFace && !card.Limited)
+            //     {
+            //         photonViews.Add(tf.gameObject.GetComponent<PhotonView>());
+            //     }
+            // }
+            // foreach (var photonView in photonViews)
+            // {
+            //     photonView.RPC("ChangeParent", RpcTarget.All, "Hand");
+            // }
             turnManager.SendMove(null, true);
         }
     }

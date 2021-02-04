@@ -13,6 +13,8 @@ namespace BladeRondo.Game.Component
         [SerializeField]
         private Sprite Back;
 
+        public bool IsShowFace { get; private set; } = false;
+
         public void Init(Card card)
         {
             FaceInfo.transform.Find("Name").gameObject.GetComponent<Text>().text = card.Name;
@@ -21,6 +23,7 @@ namespace BladeRondo.Game.Component
 
         public void ToggleFace(bool isFace)
         {
+            IsShowFace = isFace;
             Face.sprite = (isFace) ? GetComponent<Card>().Face : Back;
             FaceInfo.SetActive(isFace);
         }

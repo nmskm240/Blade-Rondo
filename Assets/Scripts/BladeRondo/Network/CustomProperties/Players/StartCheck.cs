@@ -20,7 +20,7 @@ namespace BladeRondo.Network.CustomProperties.Players
             player.SetCustomProperties(hashtable);
         }
 
-        public static bool GetStartcheck(this Player player)
+        public static bool GetStartCheck(this Player player)
         {
             if(player == null || player.CustomProperties == null || !player.CustomProperties.ContainsKey(StartCheckPros))
             {

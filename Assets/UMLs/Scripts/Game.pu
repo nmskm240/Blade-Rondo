@@ -73,6 +73,10 @@ package BladeRondo
                 +<<property>>Status:IState
             }
             class CardController
+            {
+                ChangeParent(newParentName:string):void
+            }
+            class CardAnimation
             class CardAbilityUtil
             class CardPlayCheckUtil
             class CardAbilityCheckUtil
@@ -103,7 +107,8 @@ package BladeRondo
                 Trap
             }
         }
-        class CardFactory
+        class NetworkCardFactory
+        class LocalCardFactory
     }
     package Network
     {
@@ -120,7 +125,7 @@ package BladeRondo
             }
             package Rooms
             {
-
+                class Deck
             }
         }
         package RaiseEvents
@@ -142,9 +147,27 @@ package BladeRondo
     }
     package System
     {
+        package TurnState
+        {
+            package Phases
+            {
+                class BattleSetup
+                class FirstPick
+                class Standby
+                class Main
+                class End
+            }
+            package Steps
+            {
+                class VoltageRefflesh
+                class ActivateAttachedAbility
+                class AcitvateDeploymentsAbility
+                class ReturnCards
+            }
+        }
         interface IFactory<T>
         {
-            +Create(str:string, b:bool):T
+            +Create(str:string):T
         }
         interface IState
         {
@@ -152,6 +175,9 @@ package BladeRondo
         }
         class DebugManager
         class TurnManager
+        {
+            -NowPhase:IState
+        }
     }
     package UI
     {
@@ -161,21 +187,42 @@ package BladeRondo
         class GameStartChecker
         class Counter
         class PlayerParameters
+        class CardPicker
+        {
+            -Contens:GameObject
+            -CheckmarkFactory:IFactory
+        }
+        class CheckmarkFactory
     }
 }
 
-IState <|.down. None
-IState <|.down. Usable
-IState <|.down. Unusable
-IState <|.down. Attack
-IState <|.down. Attacked
-IState <|.down. ActivatableAbility
-IState <|.down. ActivatedAbility
-IState <|.down. Discard
-IState <|.down. SetResponce
+IState <|.left. None
+IState <|.left. Usable
+IState <|.left. Unusable
+IState <|.left. Attack
+IState <|.left. Attacked
+IState <|.left. ActivatableAbility
+IState <|.left. ActivatedAbility
+IState <|.left. Discard
+IState <|.left. SetResponce
 
-IFactory <|.down. CardFactory
-CardFactory .down.> Card : create
+IState <|.down. BattleSetup
+IState <|.down. FirstPick
+IState <|.down. Standby
+IState <|.down. Main
+IState <|.down. End
+
+IState <|.down. VoltageRefflesh
+IState <|.down. ActivateAttachedAbility
+IState <|.down. AcitvateDeploymentsAbility
+
+IFactory <|.. CheckmarkFactory
+
+IFactory <|.down. NetworkCardFactory
+IFactory <|.down. LocalCardFactory
+
+NetworkCardFactory .down.> Card : create
+LocalCardFactory .down.> Card : create
 Card ..> CardData : read
 Card ..> CardAbilityUtil : set delegate
 Card ..> CardAbilityCheckUtil : set delegate

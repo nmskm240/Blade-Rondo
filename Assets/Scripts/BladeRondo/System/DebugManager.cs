@@ -16,7 +16,7 @@ namespace BladeRondo.System
             }
             if(GUI.Button(new Rect(0,20,80,20), "card create"))
             {
-                new CardFactory().Create(cardId.ToString(), true);
+                new NetworkCardFactory().Create(cardId.ToString());
             }    
         }
     }
