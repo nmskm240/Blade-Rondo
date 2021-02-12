@@ -14,8 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   name: "\u52A0\u71B1\u6CD5"
-  abilityText: "\u3042\u306A\u305F\u306E\u653B\u6483\u529B\u306F+1\u3055\u308C\u308B"
+  effectText: "\u3042\u306A\u305F\u306E\u653B\u6483\u529B\u306F+1\u3055\u308C\u308B"
+  effectTiming: 3
   cost: 1
   limited: 0
   symbol: 0
-  face: {fileID: 21300000, guid: ee13d88e97bfd5549a5aab77d7d97857, type: 3}
+  attackPower: 0
+  canResponce: 1
+  responceable: 

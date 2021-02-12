@@ -12,8 +12,8 @@ namespace BladeRondo.System.TurnState.Phases
         private List<IState> Steps = new List<IState>()
         {
             new VoltageRefflesh(),
-            new ActivateAttachedAbility(),
-            new ActivateDeploymentsAbility(),
+            new ActivateAttachedEffect(),
+            new ActivateDeploymentsEffect(),
         };
 
         public void Execute()

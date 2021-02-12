@@ -5,38 +5,36 @@ package BladeRondo
     {
         package Component
         {
-            package CardState
-            {
-                class None
-                class Usable
-                class Unusable
-                class SetResponce
-                class Attack
-                class Attacked
-                class ActivatableAbility
-                class ActivatedAbility
-                class Discard
-            }
+            ' package CardState
+            ' {
+            '     class None
+            '     class Use
+            '     class SetResponce
+            '     class Attack
+            '     class ActivateEffect
+            ' }
             class Card
             {
                 +<<property>>Id:int{private set}
                 +<<property>>Name:string{private set}
-                +<<property>>AbilityText:string{private set}
+                +<<property>>EffectText:string{private set}
+                +<<property>>EffectTiming:EffectTiming{private set}
                 +<<property>>Cost:int{private set}
                 +<<property>>Limited:bool{private set}
                 +<<property>>Symbol:CardType{private set}
                 +<<property>>AttackPower:int{private set}
+                +<<property>>CanResponce{private set}
                 +<<property>>Responceable:List<CardTYpe>{private set}
                 +<<property>>Face:Sprite{private set}
                 +<<property>>InHand:bool{get only}
+                +<<property>>CanPlay:bool{get only}
                 --
-                +<<delegate>>Ability():void
-                +Abilities:Ability
+                +<<delegate>>Effect():void
+                +Effects:Effect
                 +<<delegate>>Check():bool
-                +CanActivateAbility:Check
+                +CanActivateEffect:Check
                 --
                 Init(Id:int):void
-                CanPlay():bool
                 Play():void
                 PayCost():void
             }
@@ -44,19 +42,23 @@ package BladeRondo
             {
                 -id:int
                 -name:string
-                -abilityText:string
+                -effectText:string
+                -effectTiming:EffectTiming
                 -cost:int
                 -limited:bool
                 -symbol:CardType
                 -attackPower:int
+                -canResponce:bool
                 -responceable:List<CardType>
                 +<<property>>Id:int{get only}
                 +<<property>>Name:string{get only}
-                +<<property>>AbilityText:string{get only}
+                +<<property>>EffectText:string{get only}
+                +<<property>>EffectTiming:EffectTiming{get only}
                 +<<property>>Cost:int{get only}
                 +<<property>>Limited:bool{get only}
                 +<<property>>Symbol:CardType{get only}
                 +<<property>>AttackPower:int{get only}
+                +<<property>>CanResponce:bool{get only}
                 +<<property>>Responceable:List<CardType>{get only}
             }
             class CardView
@@ -67,37 +69,32 @@ package BladeRondo
                 +Init(card:Card):void
                 +ToggleFace(isFace:bool):void
             }
-            class CardState
-            {
-                +<<property>>StatusType:CardStateType
-                +<<property>>Status:IState
-            }
+            ' class CardState
+            ' {
+            '     +<<property>>StatusType:CardStateType
+            '     +<<property>>Status:IState
+            ' }
             class CardController
             {
                 ChangeParent(newParentName:string):void
             }
             class CardAnimation
-            class CardAbilityUtil
+            class CardEffectUtil
             class CardPlayCheckUtil
-            class CardAbilityCheckUtil
-            class Hand
-            class Graveyard
+            class CardEffectCheckUtil
+            class Cemetery
             class PlayArea
             {
                 +Put():void
             }
-            enum CardStateType
-            {
-                None,
-                Usable,
-                Unusable,
-                SetResponce,
-                Attack,
-                Attacked,
-                ActivatableAbility,
-                ActivatedAbility,
-                Discard,
-            }
+            ' enum CardStateType
+            ' {
+            '     None,
+            '     Use,
+            '     SetResponce,
+            '     Attack,
+            '     ActivateEffect,
+            ' }
             enum CardType
             {
                 Breath
@@ -120,21 +117,13 @@ package BladeRondo
                 class "Attack "
                 class Defence
                 class Voltage
-
+                class Hand
                 class StartCheck
             }
             package Rooms
             {
                 class Deck
-            }
-        }
-        package RaiseEvents
-        {
-            class PutCard
-            class RaiseEventPractitioner
-            enum RaiseEventType
-            {
-                PutCard
+                class TurnPlayer
             }
         }
         interface IConnecter
@@ -160,9 +149,10 @@ package BladeRondo
             package Steps
             {
                 class VoltageRefflesh
-                class ActivateAttachedAbility
-                class AcitvateDeploymentsAbility
-                class ReturnCards
+                class ActivateAttachedEffect
+                class AcitvateDeploymentsEffect
+                class EnemyReturn
+                class PlayerReturn
             }
         }
         interface IFactory<T>
@@ -173,15 +163,42 @@ package BladeRondo
         {
             +Execute():void
         }
+        interface IObserver
+        {
+            +ReceiveNotify():void
+        }
+        interface IObservable
+        {
+            +NotifyObservers():void
+        }
         class DebugManager
         class TurnManager
         {
             -NowPhase:IState
         }
+        enum EffectTiming
+        {
+            None,
+            Forging,
+            PayCostAndCompensation,
+            SymbolMove,
+            TrapActivate,
+            BeforeAttackEffectActivation,
+            AttackConfirm,
+            DefenceConfirm,
+            CalDamage,
+            CorrectionDamage,
+            Addition,
+            SymbolMoveEnd,
+            ImmediatelyAfterAttack,
+        }
     }
     package UI
     {
         class CardDropArea
+        {
+            -PlayArea:PlayArea
+        }
         class RoomIdViewer
         class PlayerNode
         class GameStartChecker
@@ -196,15 +213,11 @@ package BladeRondo
     }
 }
 
-IState <|.left. None
-IState <|.left. Usable
-IState <|.left. Unusable
-IState <|.left. Attack
-IState <|.left. Attacked
-IState <|.left. ActivatableAbility
-IState <|.left. ActivatedAbility
-IState <|.left. Discard
-IState <|.left. SetResponce
+' IState <|.left. None
+' IState <|.left. Use
+' IState <|.left. Attack
+' IState <|.left. ActivateEffect
+' IState <|.left. SetResponce
 
 IState <|.down. BattleSetup
 IState <|.down. FirstPick
@@ -213,8 +226,17 @@ IState <|.down. Main
 IState <|.down. End
 
 IState <|.down. VoltageRefflesh
-IState <|.down. ActivateAttachedAbility
-IState <|.down. AcitvateDeploymentsAbility
+IState <|.down. ActivateAttachedEffect
+IState <|.down. AcitvateDeploymentsEffect
+IState <|.down. EnemyReturn
+IState <|.down. PlayerReturn
+
+Standby -- VoltageRefflesh
+Standby -- ActivateAttachedEffect
+Standby -- AcitvateDeploymentsEffect
+
+End -- EnemyReturn
+End -- PlayerReturn
 
 IFactory <|.. CheckmarkFactory
 
@@ -224,20 +246,18 @@ IFactory <|.down. LocalCardFactory
 NetworkCardFactory .down.> Card : create
 LocalCardFactory .down.> Card : create
 Card ..> CardData : read
-Card ..> CardAbilityUtil : set delegate
-Card ..> CardAbilityCheckUtil : set delegate
+Card ..> CardEffectUtil : set delegate
+Card ..> CardEffectCheckUtil : set delegate
 Card ..> CardPlayCheckUtil : set delegate
 ScriptableObject <|-up- CardData
-IBeginDragHandler <|.. CardController
-IDragHandler <|.. CardController
-IEndDrafHandler <|.. CardController
-IDropHandler <|.. CardDropArea
+IBeginDragHandler <|.down. CardController
+IDragHandler <|.down. CardController
+IEndDrafHandler <|.down. CardController
+IDropHandler <|.down. CardDropArea
 
 IConnecter <|.. ServerConnecter
 IConnecter <|.. RoomConnecter
 IConnecter <|.. GameConnecter
-
-IOnEventCallback <|.. RaiseEventPractitioner
 
 PlayerParameters -- Counter
 @enduml

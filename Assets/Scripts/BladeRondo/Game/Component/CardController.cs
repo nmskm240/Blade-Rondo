@@ -16,7 +16,7 @@ namespace BladeRondo.Game.Component
         {
             var card = GetComponent<Card>();
             var photonView = GetComponent<PhotonView>();
-            if(card.CanPlay() && PhotonNetwork.CurrentRoom.GetTurnPlayer() == PhotonNetwork.LocalPlayer && photonView.IsMine)
+            if(card.CanPlay && PhotonNetwork.CurrentRoom.GetTurnPlayer() == PhotonNetwork.LocalPlayer && photonView.IsMine)
             {
                 this.transform.position = e.position;
             }

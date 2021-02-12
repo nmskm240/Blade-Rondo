@@ -8,7 +8,7 @@ namespace BladeRondo.UI
     {
         public GameObject Create(string str = null)
         {
-            var go = Instantiate(Resources.Load("Prefabs/AttachedAbilityIconPrefab") as GameObject);
+            var go = Instantiate(Resources.Load("Prefabs/AttachedEffectIconPrefab") as GameObject);
             go.GetComponent<Image>().sprite = Resources.Load("Textures/Checkmark", typeof(Sprite)) as Sprite;
             return go;
         }

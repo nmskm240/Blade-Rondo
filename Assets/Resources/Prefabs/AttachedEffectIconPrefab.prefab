@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9114084121552620596}
   - component: {fileID: 7513749778232114295}
   m_Layer: 5
-  m_Name: AttachedAbilityIconPrefab
+  m_Name: AttachedEffectIconPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

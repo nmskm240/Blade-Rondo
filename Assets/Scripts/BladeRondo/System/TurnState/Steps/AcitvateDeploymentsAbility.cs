@@ -5,7 +5,7 @@ using BladeRondo.System;
 
 namespace BladeRondo.System.TurnState.Steps
 {
-    public class ActivateDeploymentsAbility : IState
+    public class ActivateDeploymentsEffect : IState
     {
         public void Execute()
         {

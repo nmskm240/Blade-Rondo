@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using FieldShowIf.Enum;
+using BladeRondo.System;
 
 namespace BladeRondo.Game.Component
 {    
@@ -14,7 +15,9 @@ namespace BladeRondo.Game.Component
         [SerializeField]
         private string name;
         [SerializeField]
-        private string abilityText;
+        private string effectText;
+        [SerializeField]
+        private EffectTiming effectTiming;
         [SerializeField]
         private int cost;
         [SerializeField]
@@ -23,16 +26,20 @@ namespace BladeRondo.Game.Component
         private CardType symbol;
         [SerializeField, ShowChange(nameof(CardType.Magical), nameof(symbol))]
         private int attackPower;
+        [SerializeField]
+        private bool canResponce;
         [SerializeField, ShowChange(nameof(CardType.Trap), nameof(symbol))]
         private List<CardType> responceable;
 
         public int Id { get { return id; } } 
         public string Name { get { return name; } } 
-        public string AbilityText { get { return abilityText; } } 
+        public string EffectText { get { return effectText; } } 
+        public EffectTiming EffectTiming { get { return effectTiming; } }
         public int Cost { get { return cost; } } 
         public bool Limited { get { return limited; } } 
         public CardType Symbol { get { return symbol; } } 
         public int AttackPower { get { return attackPower; } }
+        public bool CanResponce { get { return canResponce; } }
         public List<CardType> Responceable { get { return responceable; } }
     }
 }

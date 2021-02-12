@@ -14,9 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 3
   name: "\u65AC\u6483\u5263"
-  abilityText: 
+  effectText: 
+  effectTiming: 0
   cost: 1
   limited: 0
   symbol: 1
   attackPower: 0
+  canResponce: 1
   responceable: 

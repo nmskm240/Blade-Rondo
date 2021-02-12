@@ -5,7 +5,7 @@ using BladeRondo.System;
 
 namespace BladeRondo.System.TurnState.Steps
 {
-    public class ActivateAttachedAbility : IState
+    public class ActivateAttachedEffect : IState
     {
         public void Execute()
         {

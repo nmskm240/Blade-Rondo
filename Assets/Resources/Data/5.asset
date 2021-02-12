@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 5
   name: "\u95C7\u9ED2\u5263"
-  abilityText: "\u3053\u306E\u653B\u6483\u306F\u30EC\u30B9\u30DD\u30F3\u30B9\u3055\u308C\u306A\u3044\u3002"
+  effectText: "\u3053\u306E\u653B\u6483\u306F\u30EC\u30B9\u30DD\u30F3\u30B9\u3055\u308C\u306A\u3044\u3002"
   cost: 2
   limited: 0
   symbol: 1

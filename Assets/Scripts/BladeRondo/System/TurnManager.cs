@@ -1,10 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
-using BladeRondo.Game.Component;
 using BladeRondo.Network.CustomProperties.Players;
 using BladeRondo.Network.CustomProperties.Rooms;
 using BladeRondo.System.TurnState.Phases;
@@ -27,15 +25,18 @@ namespace BladeRondo.System
 
         private IEnumerator Start()
         {
+            if(PhotonNetwork.IsMasterClient)
+            {
+                var startPlayerId = Random.Range(0,2);
+                var startPlayer = PhotonNetwork.PlayerList[startPlayerId];
+                PhotonNetwork.CurrentRoom.SetTurnPlayer(startPlayer);
+            }
             NowPhase = new FirstPick();
             NowPhase.Execute();
             yield return new WaitWhile( () => PhotonNetwork.LocalPlayer.GetStartCheck() || PhotonNetwork.PlayerListOthers[0].GetStartCheck() );
             NowPhase = new BattleSetup();
             NowPhase.Execute();
-            if(PhotonNetwork.IsMasterClient)
-            {
-                turnManager.BeginTurn();
-            }
+            turnManager.BeginTurn();
         }
 
         public void OnTurnBegins(int turn)
@@ -43,6 +44,8 @@ namespace BladeRondo.System
             if(PhotonNetwork.CurrentRoom.GetTurnPlayer() == PhotonNetwork.LocalPlayer)
             {
                 NowPhase = new Standby();
+                NowPhase.Execute();
+                NowPhase = new Main();
                 NowPhase.Execute();
             }
             else
@@ -55,8 +58,8 @@ namespace BladeRondo.System
         {
             if(PhotonNetwork.CurrentRoom.GetTurnPlayer() == PhotonNetwork.LocalPlayer)
             {
-                var nextPlayer = PhotonNetwork.CurrentRoom.GetTurnPlayer().GetNext();
-                PhotonNetwork.CurrentRoom.SetTurnPlayer(nextPlayer);
+                NowPhase = new End();
+                NowPhase.Execute();
             }
             turnManager.BeginTurn();
         }
@@ -78,20 +81,6 @@ namespace BladeRondo.System
 
         public void TurnEnd()
         {
-            // var photonViews = new List<PhotonView>();
-            // foreach(Transform tf in Players.transform.Find("Player").transform.Find("PlayArea"))
-            // {
-            //     var card = tf.gameObject.GetComponent<Card>();
-            //     var cardView = tf.gameObject.GetComponent<CardView>();
-            //     if(cardView.IsShowFace && !card.Limited)
-            //     {
-            //         photonViews.Add(tf.gameObject.GetComponent<PhotonView>());
-            //     }
-            // }
-            // foreach (var photonView in photonViews)
-            // {
-            //     photonView.RPC("ChangeParent", RpcTarget.All, "Hand");
-            // }
             turnManager.SendMove(null, true);
         }
     }

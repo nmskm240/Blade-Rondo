@@ -30,18 +30,18 @@ namespace BladeRondo.UI
             var go = e.pointerEnter;
             if (go.GetComponent<Card>() != null)
             {
-                var attachedAbility = go.transform.Find("AttachedAbility").gameObject;
-                if (attachedAbility.transform.childCount == 0)
+                var attachedEffect = go.transform.Find("AttachedEffect").gameObject;
+                if (attachedEffect.transform.childCount == 0)
                 {
                     var checkmark = CheckmarkFactory.Create();
-                    checkmark.transform.SetParent(attachedAbility.transform);
+                    checkmark.transform.SetParent(attachedEffect.transform);
                     checkmark.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
                     checkmark.transform.localPosition = new Vector3(0, 0, 0);
                     PickedCards.Add(go.GetComponent<Card>().Id);
                 }
                 else
                 {
-                    foreach(Transform tf in attachedAbility.transform)
+                    foreach(Transform tf in attachedEffect.transform)
                     {
                         Destroy(tf.gameObject);
                     }
@@ -56,6 +56,7 @@ namespace BladeRondo.UI
             {
                 card.transform.SetParent(Contents.transform);
                 card.transform.localScale = new Vector3(1, 1, 1);
+                card.GetComponent<CardView>().ToggleFace(true);
             }
         }
 
