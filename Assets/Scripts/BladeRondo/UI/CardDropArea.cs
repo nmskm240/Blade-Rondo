@@ -7,7 +7,7 @@ namespace BladeRondo.UI
     public class CardDropArea : MonoBehaviour, IDropHandler 
     {
         [SerializeField]
-        private PlayArea PlayArea;
+        private PlayArea _playArea;
 
         public void OnDrop(PointerEventData e)
         {
@@ -17,7 +17,7 @@ namespace BladeRondo.UI
                 var card = go.GetComponent<Card>();
                 if(card.CanPlay)
                 {
-                    PlayArea.Put(go);
+                    _playArea.Put(go);
                 }
             }
         }

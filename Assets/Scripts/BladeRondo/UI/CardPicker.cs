@@ -13,16 +13,16 @@ namespace BladeRondo.UI
     public class CardPicker : MonoBehaviour, IPointerClickHandler
     {
         [SerializeField]
-        private GameObject Contents;
+        private GameObject _contents;
 
-        private List<int> PickedCards;
-        private IFactory<GameObject> CheckmarkFactory;
+        private List<int> _pickedCards;
+        private IFactory<GameObject> _checkmarkFactory;
 
         private void Awake()
         {
             Hide();
-            CheckmarkFactory = new CheckmarkFactory();
-            PickedCards = new List<int>();
+            _checkmarkFactory = new CheckmarkFactory();
+            _pickedCards = new List<int>();
         }
 
         public void OnPointerClick(PointerEventData e)
@@ -33,11 +33,11 @@ namespace BladeRondo.UI
                 var attachedEffect = go.transform.Find("AttachedEffect").gameObject;
                 if (attachedEffect.transform.childCount == 0)
                 {
-                    var checkmark = CheckmarkFactory.Create();
+                    var checkmark = _checkmarkFactory.Create();
                     checkmark.transform.SetParent(attachedEffect.transform);
                     checkmark.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
                     checkmark.transform.localPosition = new Vector3(0, 0, 0);
-                    PickedCards.Add(go.GetComponent<Card>().Id);
+                    _pickedCards.Add(go.GetComponent<Card>().ID);
                 }
                 else
                 {
@@ -45,7 +45,7 @@ namespace BladeRondo.UI
                     {
                         Destroy(tf.gameObject);
                     }
-                    PickedCards.Remove(go.GetComponent<Card>().Id);
+                    _pickedCards.Remove(go.GetComponent<Card>().ID);
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace BladeRondo.UI
         {
             foreach (var card in cards)
             {
-                card.transform.SetParent(Contents.transform);
+                card.transform.SetParent(_contents.transform);
                 card.transform.localScale = new Vector3(1, 1, 1);
                 card.GetComponent<CardView>().ToggleFace(true);
             }
@@ -72,7 +72,7 @@ namespace BladeRondo.UI
 
         public void DestroyAll()
         {
-            foreach(Transform tf in Contents.transform)
+            foreach(Transform tf in _contents.transform)
             {
                 Destroy(tf.gameObject);
             }
@@ -80,7 +80,7 @@ namespace BladeRondo.UI
 
         public void OnClickCompletButton()
         {
-            PhotonNetwork.LocalPlayer.SetHand(PickedCards);
+            PhotonNetwork.LocalPlayer.SetHand(_pickedCards);
             PhotonNetwork.LocalPlayer.SetStartCheck(false);
             Hide();
             DestroyAll();

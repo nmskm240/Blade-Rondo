@@ -7,11 +7,11 @@ namespace BladeRondo.UI
     public class RoomIdViewer : MonoBehaviour 
     {
         [SerializeField]
-        private Text RoomId;
+        private Text _roomId;
 
         private void Awake()
         {
-            RoomId.text = PhotonNetwork.CurrentRoom.Name;
+            _roomId.text = PhotonNetwork.CurrentRoom.Name;
         }
     }
 }

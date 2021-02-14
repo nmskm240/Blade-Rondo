@@ -6,7 +6,7 @@ namespace BladeRondo.Network.CustomProperties.Players
 {
     public static class StartCheck
     {
-        public static readonly string StartCheckPros = "SCheck";
+        public static readonly string _startCheckPros = "SCheck";
 
         public static void SetStartCheck(this Player player, bool check) 
         {
@@ -16,18 +16,18 @@ namespace BladeRondo.Network.CustomProperties.Players
             }
 
             var hashtable = new Hashtable();
-            hashtable[StartCheckPros] = check;
+            hashtable[_startCheckPros] = check;
             player.SetCustomProperties(hashtable);
         }
 
         public static bool GetStartCheck(this Player player)
         {
-            if(player == null || player.CustomProperties == null || !player.CustomProperties.ContainsKey(StartCheckPros))
+            if(player == null || player.CustomProperties == null || !player.CustomProperties.ContainsKey(_startCheckPros))
             {
                 return false;
             }
 
-            return (bool)player.CustomProperties[StartCheckPros];
+            return (bool)player.CustomProperties[_startCheckPros];
         }
     }
 }

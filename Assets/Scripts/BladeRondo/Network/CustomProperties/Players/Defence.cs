@@ -6,7 +6,7 @@ namespace BladeRondo.Network.CustomProperties.Players
 {
     public static class Defence
     {
-        public static readonly string DefencePros = "Defence";
+        public static readonly string _defencePros = "Defence";
 
         public static void SetDefence(this Player player, int defence) 
         {
@@ -16,18 +16,18 @@ namespace BladeRondo.Network.CustomProperties.Players
             }
 
             var hashtable = new Hashtable();
-            hashtable[DefencePros] = defence;
+            hashtable[_defencePros] = defence;
             player.SetCustomProperties(hashtable);
         }
 
         public static int GetDefence(this Player player)
         {
-            if(player == null || player.CustomProperties == null || !player.CustomProperties.ContainsKey(DefencePros))
+            if(player == null || player.CustomProperties == null || !player.CustomProperties.ContainsKey(_defencePros))
             {
                 return -1;
             }
 
-            return (int)player.CustomProperties[DefencePros];
+            return (int)player.CustomProperties[_defencePros];
         }
     }
 }

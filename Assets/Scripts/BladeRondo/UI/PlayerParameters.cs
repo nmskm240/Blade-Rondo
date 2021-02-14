@@ -9,15 +9,15 @@ namespace BladeRondo.UI
     public class PlayerParameters : MonoBehaviourPunCallbacks 
     {
         [SerializeField]
-        private Counter Hp;
+        private Counter _hp;
         [SerializeField]
-        private Counter NowVoltage;
+        private Counter _nowVoltage;
         [SerializeField]
-        private Counter MaxVoltage;
+        private Counter _maxVoltage;
         [SerializeField]
-        private Counter Attack;
+        private Counter _attack;
         [SerializeField]
-        private Counter Defence;
+        private Counter _defence;
 
         public override void OnPlayerPropertiesUpdate(Player player, Hashtable hashtable)
         {
@@ -28,23 +28,23 @@ namespace BladeRondo.UI
                 {
                     if(hashtable.ContainsKey("HP"))
                     {
-                        Hp.Count = player.GetHP();
+                        _hp.Count = player.GetHP();
                     }
                     if(hashtable.ContainsKey("Attack"))
                     {
-                        Attack.Count = player.GetAttack();
+                        _attack.Count = player.GetAttack();
                     }
                     if(hashtable.ContainsKey("NVoltage"))
                     {
-                        NowVoltage.Count = player.GetNowVoltage();
+                        _nowVoltage.Count = player.GetNowVoltage();
                     }
                     if(hashtable.ContainsKey("MVoltage"))
                     {
-                        MaxVoltage.Count = player.GetMaxVoltage();
+                        _maxVoltage.Count = player.GetMaxVoltage();
                     }
                     if(hashtable.ContainsKey("Defence"))
                     {
-                        Defence.Count = player.GetDefence();
+                        _defence.Count = player.GetDefence();
                     }
                 }
             }

@@ -10,7 +10,7 @@ namespace BladeRondo.Network.CustomProperties.Rooms
 {
     public static class Deck
     {
-        public static readonly string DeckPros = "Deck";
+        public static readonly string _deckPros = "Deck";
 
         public static void SetDeck(this Room room, IEnumerable<int> Deck) 
         {
@@ -20,7 +20,7 @@ namespace BladeRondo.Network.CustomProperties.Rooms
             }
 
             var hashtable = new Hashtable();
-            hashtable[DeckPros] = Deck.ToArray();
+            hashtable[_deckPros] = Deck.ToArray();
             room.SetCustomProperties(hashtable);
         }
 
@@ -30,7 +30,7 @@ namespace BladeRondo.Network.CustomProperties.Rooms
             {
                 return null;
             }
-            else if(!room.CustomProperties.ContainsKey(DeckPros))
+            else if(!room.CustomProperties.ContainsKey(_deckPros))
             {
                 var stdDeck =  new List<int>()
                 {
@@ -39,7 +39,7 @@ namespace BladeRondo.Network.CustomProperties.Rooms
                 return stdDeck.OrderBy ( a => Guid.NewGuid () ).ToList ();
             }
 
-            var cards = (int[])room.CustomProperties[DeckPros];
+            var cards = (int[])room.CustomProperties[_deckPros];
             return cards.ToList<int>();
         }
     }

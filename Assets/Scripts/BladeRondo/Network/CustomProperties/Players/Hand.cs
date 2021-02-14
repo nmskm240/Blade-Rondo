@@ -9,7 +9,7 @@ namespace BladeRondo.Network.CustomProperties.Players
 {
     public static class Hand
     {
-        public static readonly string HandPros = "Hand";
+        public static readonly string _handPros = "Hand";
 
         public static void SetHand(this Player player, IEnumerable<int> Hand) 
         {
@@ -19,18 +19,18 @@ namespace BladeRondo.Network.CustomProperties.Players
             }
 
             var hashtable = new Hashtable();
-            hashtable[HandPros] = Hand.ToArray();
+            hashtable[_handPros] = Hand.ToArray();
             player.SetCustomProperties(hashtable);
         }
 
         public static List<int> GetHand(this Player player)
         {
-            if(player == null || player.CustomProperties == null || !player.CustomProperties.ContainsKey(HandPros))
+            if(player == null || player.CustomProperties == null || !player.CustomProperties.ContainsKey(_handPros))
             {
                 return null;
             }
 
-            var cards = (int[])player.CustomProperties[HandPros];
+            var cards = (int[])player.CustomProperties[_handPros];
             return cards.ToList<int>();
         }
     }

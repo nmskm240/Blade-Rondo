@@ -7,25 +7,24 @@ namespace BladeRondo.Game.Component
     public class CardView : MonoBehaviour 
     {
         [SerializeField]
-        private GameObject FaceInfo;
+        private GameObject _faceInfo;
         [SerializeField]
-        private Image Face;
+        private Image _face;
         [SerializeField]
-        private Sprite Back;
+        private Sprite _back;
 
-        public bool IsShowFace { get; private set; } = false;
+        public bool IsFaceUp { get { return _face.sprite != _back; } }
 
         public void Init(Card card)
         {
-            FaceInfo.transform.Find("Name").gameObject.GetComponent<Text>().text = card.Name;
-            FaceInfo.transform.Find("Cost").transform.Find("Text").gameObject.GetComponent<Text>().text = card.Cost.ToString();
+            _faceInfo.transform.Find("Name").gameObject.GetComponent<Text>().text = card.Name;
+            _faceInfo.transform.Find("Cost").transform.Find("Text").gameObject.GetComponent<Text>().text = card.Cost.ToString();
         }
 
         public void ToggleFace(bool isFace)
         {
-            IsShowFace = isFace;
-            Face.sprite = (isFace) ? GetComponent<Card>().Face : Back;
-            FaceInfo.SetActive(isFace);
+            _face.sprite = (isFace) ? GetComponent<Card>().Face : _back;
+            _faceInfo.SetActive(isFace);
         }
     }    
 }

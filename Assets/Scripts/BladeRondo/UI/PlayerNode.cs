@@ -8,9 +8,7 @@ namespace BladeRondo.UI
     public class PlayerNode : MonoBehaviourPunCallbacks 
     {
         [SerializeField]
-        private Text Name;
-        [SerializeField]
-        private Image Icon;
+        private Text _name;
         
         private void Awake() 
         {
@@ -23,22 +21,22 @@ namespace BladeRondo.UI
             {
                 if(this.gameObject.name == "Player")
                 {
-                    Name.text = PhotonNetwork.LocalPlayer.NickName;
+                    _name.text = PhotonNetwork.LocalPlayer.NickName;
                 }
                 else
                 {
-                    Name.text = "プレイヤー待ち";
+                    _name.text = "プレイヤー待ち";
                 }
             }    
             else
             {
                 if(this.gameObject.name == "Player")
                 {
-                    Name.text = PhotonNetwork.LocalPlayer.NickName;
+                    _name.text = PhotonNetwork.LocalPlayer.NickName;
                 }
                 else
                 {
-                    Name.text = PhotonNetwork.PlayerListOthers[0].NickName;
+                    _name.text = PhotonNetwork.PlayerListOthers[0].NickName;
                 }
             }
         }

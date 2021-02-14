@@ -18,7 +18,7 @@ namespace BladeRondo.System.TurnState.Steps
             {
                 var card = tf.gameObject.GetComponent<Card>();
                 var cardView = tf.gameObject.GetComponent<CardView>();
-                if(!cardView.IsShowFace)
+                if(!cardView.IsFaceUp)
                 {
                     returnHand.Add(tf.gameObject.GetComponent<PhotonView>());
                 }

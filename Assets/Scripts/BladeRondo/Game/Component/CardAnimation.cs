@@ -5,11 +5,11 @@ namespace BladeRondo.Game.Component
 {    
     public class CardAnimation : MonoBehaviour 
     {
-        private Animator Animator;
+        private Animator _animator;
 
         private void Awake() 
         {
-            Animator = GetComponent<Animator>();
+            _animator = GetComponent<Animator>();
         }
 
         private void OnTransformParentChanged() 
@@ -17,7 +17,7 @@ namespace BladeRondo.Game.Component
             var card = GetComponent<Card>();
             var playable = this.transform.parent.gameObject.name == "Hand" && card.CanPlay;
             GetComponent<Outline>().enabled = playable;
-            Animator.SetBool("Playable", playable);
+            _animator.SetBool("Playable", playable);
         }
     }
 }

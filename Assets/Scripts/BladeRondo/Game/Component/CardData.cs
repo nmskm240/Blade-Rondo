@@ -31,7 +31,7 @@ namespace BladeRondo.Game.Component
         [SerializeField, ShowChange(nameof(CardType.Trap), nameof(symbol))]
         private List<CardType> responceable;
 
-        public int Id { get { return id; } } 
+        public int ID { get { return id; } } 
         public string Name { get { return name; } } 
         public string EffectText { get { return effectText; } } 
         public EffectTiming EffectTiming { get { return effectTiming; } }

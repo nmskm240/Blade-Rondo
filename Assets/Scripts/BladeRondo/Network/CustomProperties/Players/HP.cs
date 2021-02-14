@@ -6,7 +6,7 @@ namespace BladeRondo.Network.CustomProperties.Players
 {
     public static class HP
     {
-        public static readonly string HpPros = "HP";
+        public static readonly string _hpPros = "HP";
 
         public static void SetHP(this Player player, int hp) 
         {
@@ -16,18 +16,18 @@ namespace BladeRondo.Network.CustomProperties.Players
             }
 
             var hashtable = new Hashtable();
-            hashtable[HpPros] = hp;
+            hashtable[_hpPros] = hp;
             player.SetCustomProperties(hashtable);
         }
 
         public static int GetHP(this Player player)
         {
-            if(player == null || player.CustomProperties == null || !player.CustomProperties.ContainsKey(HpPros))
+            if(player == null || player.CustomProperties == null || !player.CustomProperties.ContainsKey(_hpPros))
             {
                 return -1;
             }
 
-            return (int)player.CustomProperties[HpPros];
+            return (int)player.CustomProperties[_hpPros];
         }
 
         public static void AddHP(this Player player, int num)
@@ -42,7 +42,7 @@ namespace BladeRondo.Network.CustomProperties.Players
             nowHp += num;
             nowHp = (nowHp > 15) ? 15 : nowHp;
             nowHp = (nowHp < 0) ? 0 : nowHp;
-            hashtable[HpPros] = nowHp;
+            hashtable[_hpPros] = nowHp;
             player.SetCustomProperties(hashtable);
         }
     }

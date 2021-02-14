@@ -12,15 +12,13 @@ namespace BladeRondo.System
     public class TurnManager : MonoBehaviour, IPunTurnManagerCallbacks 
     {
         [SerializeField]
-        private PunTurnManager turnManager;
-        [SerializeField]
-        private GameObject Players;
+        private PunTurnManager _turnManager;
 
         private IState NowPhase;
 
         private void Awake() 
         {
-            turnManager.TurnManagerListener = this;
+            _turnManager.TurnManagerListener = this;
         }
 
         private IEnumerator Start()
@@ -36,7 +34,7 @@ namespace BladeRondo.System
             yield return new WaitWhile( () => PhotonNetwork.LocalPlayer.GetStartCheck() || PhotonNetwork.PlayerListOthers[0].GetStartCheck() );
             NowPhase = new BattleSetup();
             NowPhase.Execute();
-            turnManager.BeginTurn();
+            _turnManager.BeginTurn();
         }
 
         public void OnTurnBegins(int turn)
@@ -61,7 +59,7 @@ namespace BladeRondo.System
                 NowPhase = new End();
                 NowPhase.Execute();
             }
-            turnManager.BeginTurn();
+            _turnManager.BeginTurn();
         }
 
         public void OnPlayerMove(Player player, int turn, object move)
@@ -81,7 +79,7 @@ namespace BladeRondo.System
 
         public void TurnEnd()
         {
-            turnManager.SendMove(null, true);
+            _turnManager.SendMove(null, true);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace BladeRondo.Network.CustomProperties.Rooms
 {
     public static class TurnPlayer
     {
-        public static readonly string TurnPlayerPros = "TurnPlayer";
+        public static readonly string _turnPlayerPros = "TurnPlayer";
 
         public static void SetTurnPlayer(this Room room, Player turnPlayer) 
         {
@@ -19,18 +19,18 @@ namespace BladeRondo.Network.CustomProperties.Rooms
             }
 
             var hashtable = new Hashtable();
-            hashtable[TurnPlayerPros] = turnPlayer;
+            hashtable[_turnPlayerPros] = turnPlayer;
             room.SetCustomProperties(hashtable);
         }
 
         public static Player GetTurnPlayer(this Room room)
         {
-            if(room == null || room.CustomProperties == null || !room.CustomProperties.ContainsKey(TurnPlayerPros))
+            if(room == null || room.CustomProperties == null || !room.CustomProperties.ContainsKey(_turnPlayerPros))
             {
                 return null;
             }
 
-            return (Player)room.CustomProperties[TurnPlayerPros];
+            return (Player)room.CustomProperties[_turnPlayerPros];
         }
     }
 }

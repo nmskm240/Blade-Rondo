@@ -6,8 +6,8 @@ namespace BladeRondo.UI
     public class Counter : MonoBehaviour 
     {
         [SerializeField]
-        private Text count;
+        private Text _count;
 
-        public int Count { get { return int.Parse(count.text); } set { count.text = value.ToString(); } }
+        public int Count { get { return int.Parse(_count.text); } set { _count.text = value.ToString(); } }
     }
 }

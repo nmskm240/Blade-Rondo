@@ -13,13 +13,13 @@ namespace BladeRondo.Game.Component
 {    
     public class Card : MonoBehaviour 
     {
-        private int cost;
+        private int _cost;
 
-        public int Id { get; private set; }
+        public int ID { get; private set; }
         public string Name { get; private set; }
         public string EffectText { get; private set; }
         public EffectTiming EffectTiming { get; private set; }
-        public int Cost { get { return ( cost == -1) ? PhotonNetwork.LocalPlayer.GetNowVoltage() : cost; } private set { cost = value; } }
+        public int Cost { get { return ( _cost == -1) ? PhotonNetwork.LocalPlayer.GetNowVoltage() : _cost; } private set { _cost = value; } }
         public bool Limited { get; private set; }
         public CardType Symbol { get; private set; }
         public int AttackPower { get; private set; }
@@ -38,7 +38,7 @@ namespace BladeRondo.Game.Component
         public void Init(int id)
         {
             var data = Resources.Load("Data/" + id.ToString()) as CardData;
-            Id = data.Id;
+            ID = data.ID;
             Name = data.Name;
             EffectText = data.EffectText;
             EffectTiming = data.EffectTiming;
@@ -51,7 +51,7 @@ namespace BladeRondo.Game.Component
             var face = Resources.Load("Textures/" + id.ToString(), typeof(Sprite)) as Sprite;
             Face = (face == null) ? Resources.Load("Textures/CardFace", typeof(Sprite)) as Sprite : face;
             var effectUtil = GetComponent<EffectUtil>();
-            var tmp = effectUtil.GetType().GetMethod("Card" + Id);
+            var tmp = effectUtil.GetType().GetMethod("Card" + ID);
             if(tmp != null)
             {
                 Effects = (Effect)Delegate.CreateDelegate(typeof(Effect), effectUtil, tmp);
