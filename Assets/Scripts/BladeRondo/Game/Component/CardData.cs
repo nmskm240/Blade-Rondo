@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using FieldShowIf.Enum;
+using BladeRondo.Game.Effect;
 using BladeRondo.System;
 
 namespace BladeRondo.Game.Component
@@ -18,6 +19,8 @@ namespace BladeRondo.Game.Component
         private string _effectText;
         [SerializeField]
         private EffectTiming _effectTiming;
+        [SerializeReference, SubclassSelector]
+        private List<IEffect> _effects;
         [SerializeField]
         private int _cost;
         [SerializeField]
@@ -35,11 +38,12 @@ namespace BladeRondo.Game.Component
         public string Name { get { return _name; } } 
         public string EffectText { get { return _effectText; } } 
         public EffectTiming EffectTiming { get { return _effectTiming; } }
+        public IEnumerable<IEffect> Effects { get { return _effects; } }
         public int Cost { get { return _cost; } } 
         public bool Limited { get { return _limited; } } 
         public CardType Symbol { get { return _symbol; } } 
         public int AttackPower { get { return _attackPower; } }
         public bool CanResponce { get { return _canResponce; } }
-        public List<CardType> Responceable { get { return _responceable; } }
+        public IEnumerable<CardType> Responceable { get { return _responceable; } }
     }
 }
