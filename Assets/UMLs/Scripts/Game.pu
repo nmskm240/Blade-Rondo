@@ -15,7 +15,7 @@ package BladeRondo
             ' }
             class Card
             {
-                +<<property>>Id:int{private set}
+                +<<property>>ID:int{private set}
                 +<<property>>Name:string{private set}
                 +<<property>>EffectText:string{private set}
                 +<<property>>EffectTiming:EffectTiming{private set}
@@ -40,17 +40,17 @@ package BladeRondo
             }
             class CardData
             {
-                -id:int
-                -name:string
-                -effectText:string
-                -effectTiming:EffectTiming
-                -cost:int
-                -limited:bool
-                -symbol:CardType
-                -attackPower:int
-                -canResponce:bool
-                -responceable:List<CardType>
-                +<<property>>Id:int{get only}
+                -_id:int
+                -_name:string
+                -_effectText:string
+                -_effectTiming:EffectTiming
+                -_cost:int
+                -_limited:bool
+                -_symbol:CardType
+                -_attackPower:int
+                -_canResponce:bool
+                -_responceable:List<CardType>
+                +<<property>>ID:int{get only}
                 +<<property>>Name:string{get only}
                 +<<property>>EffectText:string{get only}
                 +<<property>>EffectTiming:EffectTiming{get only}
@@ -63,9 +63,9 @@ package BladeRondo
             }
             class CardView
             {
-                -FaceDetail:GameObject
-                -Back:Sprite
-                -Face:Image
+                -_faceDetail:GameObject
+                -_back:Sprite
+                -_face:Image
                 +Init(card:Card):void
                 +ToggleFace(isFace:bool):void
             }
@@ -174,7 +174,7 @@ package BladeRondo
         class DebugManager
         class TurnManager
         {
-            -NowPhase:IState
+            -_nowPhase:IState
         }
         enum EffectTiming
         {
@@ -197,7 +197,7 @@ package BladeRondo
     {
         class CardDropArea
         {
-            -PlayArea:PlayArea
+            -_playArea:PlayArea
         }
         class RoomIdViewer
         class PlayerNode
@@ -206,8 +206,8 @@ package BladeRondo
         class PlayerParameters
         class CardPicker
         {
-            -Contens:GameObject
-            -CheckmarkFactory:IFactory
+            -_contens:GameObject
+            -_checkmarkFactory:IFactory
         }
         class CheckmarkFactory
     }

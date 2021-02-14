@@ -14,7 +14,7 @@ namespace BladeRondo.System
         [SerializeField]
         private PunTurnManager _turnManager;
 
-        private IState NowPhase;
+        private IState _nowPhase;
 
         private void Awake() 
         {
@@ -29,11 +29,11 @@ namespace BladeRondo.System
                 var startPlayer = PhotonNetwork.PlayerList[startPlayerId];
                 PhotonNetwork.CurrentRoom.SetTurnPlayer(startPlayer);
             }
-            NowPhase = new FirstPick();
-            NowPhase.Execute();
+            _nowPhase = new FirstPick();
+            _nowPhase.Execute();
             yield return new WaitWhile( () => PhotonNetwork.LocalPlayer.GetStartCheck() || PhotonNetwork.PlayerListOthers[0].GetStartCheck() );
-            NowPhase = new BattleSetup();
-            NowPhase.Execute();
+            _nowPhase = new BattleSetup();
+            _nowPhase.Execute();
             _turnManager.BeginTurn();
         }
 
@@ -41,10 +41,10 @@ namespace BladeRondo.System
         {
             if(PhotonNetwork.CurrentRoom.GetTurnPlayer() == PhotonNetwork.LocalPlayer)
             {
-                NowPhase = new Standby();
-                NowPhase.Execute();
-                NowPhase = new Main();
-                NowPhase.Execute();
+                _nowPhase = new Standby();
+                _nowPhase.Execute();
+                _nowPhase = new Main();
+                _nowPhase.Execute();
             }
             else
             {
@@ -56,8 +56,8 @@ namespace BladeRondo.System
         {
             if(PhotonNetwork.CurrentRoom.GetTurnPlayer() == PhotonNetwork.LocalPlayer)
             {
-                NowPhase = new End();
-                NowPhase.Execute();
+                _nowPhase = new End();
+                _nowPhase.Execute();
             }
             _turnManager.BeginTurn();
         }

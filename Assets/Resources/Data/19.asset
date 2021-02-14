@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba98ff72eb6d114b9065ba8e4ff45b8, type: 3}
   m_Name: 19
   m_EditorClassIdentifier: 
-  id: 19
-  name: "\u725B\u4EBA"
-  effectText: "\u3042\u306A\u305F\u306E\u30BF\u30FC\u30F3\u958B\u59CB\u6642\u3001\u7269\u7406\u653B\u6483(10)\u3092\u884C\u3046\u3002"
-  effectTiming: 0
-  cost: 0
-  limited: 0
-  symbol: 1
-  attackPower: 0
-  canResponce: 1
-  responceable: 
+  _id: 19
+  _name: "\u725B\u4EBA"
+  _effectText: "\u3042\u306A\u305F\u306E\u30BF\u30FC\u30F3\u958B\u59CB\u6642\u3001\u7269\u7406\u653B\u6483(10)\u3092\u884C\u3046\u3002"
+  _effectTiming: 0
+  _cost: 0
+  _limited: 0
+  _symbol: 1
+  _attackPower: 0
+  _canResponce: 1
+  _responceable: 

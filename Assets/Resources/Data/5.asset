@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba98ff72eb6d114b9065ba8e4ff45b8, type: 3}
   m_Name: 5
   m_EditorClassIdentifier: 
-  id: 5
-  name: "\u95C7\u9ED2\u5263"
-  effectText: "\u3053\u306E\u653B\u6483\u306F\u30EC\u30B9\u30DD\u30F3\u30B9\u3055\u308C\u306A\u3044\u3002"
-  cost: 2
-  limited: 0
-  symbol: 1
-  attackPower: 0
-  responceable: 
+  _id: 5
+  _name: "\u95C7\u9ED2\u5263"
+  _effectText: "\u3053\u306E\u653B\u6483\u306F\u30EC\u30B9\u30DD\u30F3\u30B9\u3055\u308C\u306A\u3044\u3002"
+  _cost: 2
+  _limited: 0
+  _symbol: 1
+  _attackPower: 0
+  _responceable: 

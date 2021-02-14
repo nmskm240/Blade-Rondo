@@ -11,35 +11,35 @@ namespace BladeRondo.Game.Component
     public class CardData : ScriptableObject 
     {
         [SerializeField]
-        private int id;
+        private int _id;
         [SerializeField]
-        private string name;
+        private string _name;
         [SerializeField]
-        private string effectText;
+        private string _effectText;
         [SerializeField]
-        private EffectTiming effectTiming;
+        private EffectTiming _effectTiming;
         [SerializeField]
-        private int cost;
+        private int _cost;
         [SerializeField]
-        private bool limited;
+        private bool _limited;
         [SerializeField]
-        private CardType symbol;
-        [SerializeField, ShowChange(nameof(CardType.Magical), nameof(symbol))]
-        private int attackPower;
+        private CardType _symbol;
+        [SerializeField, ShowChange(nameof(CardType.Magical), nameof(_symbol))]
+        private int _attackPower;
         [SerializeField]
-        private bool canResponce;
-        [SerializeField, ShowChange(nameof(CardType.Trap), nameof(symbol))]
-        private List<CardType> responceable;
+        private bool _canResponce;
+        [SerializeField, ShowChange(nameof(CardType.Trap), nameof(_symbol))]
+        private List<CardType> _responceable;
 
-        public int ID { get { return id; } } 
-        public string Name { get { return name; } } 
-        public string EffectText { get { return effectText; } } 
-        public EffectTiming EffectTiming { get { return effectTiming; } }
-        public int Cost { get { return cost; } } 
-        public bool Limited { get { return limited; } } 
-        public CardType Symbol { get { return symbol; } } 
-        public int AttackPower { get { return attackPower; } }
-        public bool CanResponce { get { return canResponce; } }
-        public List<CardType> Responceable { get { return responceable; } }
+        public int ID { get { return _id; } } 
+        public string Name { get { return _name; } } 
+        public string EffectText { get { return _effectText; } } 
+        public EffectTiming EffectTiming { get { return _effectTiming; } }
+        public int Cost { get { return _cost; } } 
+        public bool Limited { get { return _limited; } } 
+        public CardType Symbol { get { return _symbol; } } 
+        public int AttackPower { get { return _attackPower; } }
+        public bool CanResponce { get { return _canResponce; } }
+        public List<CardType> Responceable { get { return _responceable; } }
     }
 }
