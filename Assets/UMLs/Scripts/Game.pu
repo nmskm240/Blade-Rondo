@@ -24,8 +24,6 @@ package BladeRondo
             }
             class Card
             {
-                -_cost:int
-
                 +<<property>>ID:int{private set}
                 +<<property>>Name:string{private set}
                 +<<property>>EffectText:string{private set}
@@ -171,13 +169,16 @@ package BladeRondo
         {
             +Execute():void
         }
-        interface IObserver
+        interface IObserver<T>
         {
-            +ReceiveNotify():void
+            +ReceiveNotify(data:T):void
         }
-        interface IObservable
+        abstract class MonoBehaviourSubject<T>
         {
-            +NotifyObservers():void
+            -_observers:List<IObserver<T>>
+            +AddObserver(observer:IObserver<T>)
+            +RemoveObserver(observer:IObserver<T>)
+            +NotifyObservers(pushData:T):void
         }
         class DebugManager
         class TurnManager
@@ -254,6 +255,10 @@ IFactory <|.down. LocalCardFactory
 NetworkCardFactory .down.> Card : create
 LocalCardFactory .down.> Card : create
 Card ..> CardData : read
+Card <|.. IObserver
+
+PlayArea --|> MonoBehaviourSubject
+PlayArea o.left.> Card : notify
 
 ScriptableObject <|-up- CardData
 IBeginDragHandler <|.down. CardController
@@ -266,4 +271,6 @@ IConnecter <|.. RoomConnecter
 IConnecter <|.. GameConnecter
 
 PlayerParameters -- Counter
+
+
 @enduml

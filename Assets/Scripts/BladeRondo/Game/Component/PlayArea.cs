@@ -7,7 +7,7 @@ using BladeRondo.System;
 
 namespace BladeRondo.Game.Component
 {    
-    public class PlayArea : MonoBehaviour
+    public class PlayArea : MonoBehaviourSubject<Card>
     {
         public void Put(GameObject go)
         {
@@ -15,6 +15,7 @@ namespace BladeRondo.Game.Component
             var card = go.GetComponent<Card>();
             card.PayCost();
             photonView.RPC("ChangeParent", RpcTarget.All, "PlayArea");
+            NotifyObservers(card);
         }
     }
 }

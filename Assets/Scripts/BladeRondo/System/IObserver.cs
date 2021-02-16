@@ -1,7 +1,7 @@
 namespace BladeRondo.System
 {
-    public interface IObserver
+    public interface IObserver<T>
     {
-        void ReceiveNotify();
+        void ReceiveNotify(T data);
     }
 }
