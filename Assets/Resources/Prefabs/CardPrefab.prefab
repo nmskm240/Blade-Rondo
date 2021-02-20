@@ -107,7 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0673051ebdf04d428af807dbf068145, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _faceInfo: {fileID: 3189954480188363277}
+  _name: {fileID: 3390385918869888289}
+  _cost: {fileID: 8822639022983501127}
   _face: {fileID: 623897252035984294}
   _back: {fileID: 21300000, guid: 54799c823ed3e6148a0e165873caf60d, type: 3}
 --- !u!114 &395065673379730849

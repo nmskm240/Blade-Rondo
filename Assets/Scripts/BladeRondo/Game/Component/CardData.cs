@@ -17,8 +17,6 @@ namespace BladeRondo.Game.Component
         private string _name;
         [SerializeField]
         private string _effectText;
-        [SerializeField]
-        private EffectTiming _effectTiming;
         [SerializeReference, SubclassSelector]
         private List<IEffect> _effects;
         [SerializeField]
@@ -27,8 +25,6 @@ namespace BladeRondo.Game.Component
         private bool _limited;
         [SerializeField]
         private CardType _symbol;
-        [SerializeField, ShowChange(nameof(CardType.Magical), nameof(_symbol))]
-        private int _attackPower;
         [SerializeField]
         private bool _canResponce;
         [SerializeField, ShowChange(nameof(CardType.Trap), nameof(_symbol))]
@@ -37,12 +33,10 @@ namespace BladeRondo.Game.Component
         public int ID { get { return _id; } } 
         public string Name { get { return _name; } } 
         public string EffectText { get { return _effectText; } } 
-        public EffectTiming EffectTiming { get { return _effectTiming; } }
         public IEnumerable<IEffect> Effects { get { return _effects; } }
         public int Cost { get { return _cost; } } 
         public bool Limited { get { return _limited; } } 
         public CardType Symbol { get { return _symbol; } } 
-        public int AttackPower { get { return _attackPower; } }
         public bool CanResponce { get { return _canResponce; } }
         public IEnumerable<CardType> Responceable { get { return _responceable; } }
     }

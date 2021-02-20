@@ -16,9 +16,17 @@ MonoBehaviour:
   _name: "\u30C8\u30EA\u30D3\u30E5\u30FC\u30C8\u30EA\u30EA\u30A3"
   _effectText: "\u3053\u306E\u653B\u6483\u306F\u3001\u76F8\u624B\u306E\u73FE\u5728\u306E\u30E9\u30A4\u30D5\u306B\u7B49\u3057\u3044\u3002"
   _effectTiming: 6
+  _effects:
+  - id: 0
   _cost: 8
   _limited: 1
   _symbol: 2
-  _attackPower: 0
   _canResponce: 1
   _responceable: 
+  references:
+    version: 1
+    00000000:
+      type: {class: MagicAttack, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}
+      data:
+        _value: 0
+        _damageValueType: 1

@@ -15,8 +15,18 @@ MonoBehaviour:
   _id: 5
   _name: "\u95C7\u9ED2\u5263"
   _effectText: "\u3053\u306E\u653B\u6483\u306F\u30EC\u30B9\u30DD\u30F3\u30B9\u3055\u308C\u306A\u3044\u3002"
+  _effectTiming: 0
+  _effects:
+  - id: 0
   _cost: 2
   _limited: 0
   _symbol: 1
-  _attackPower: 0
+  _canResponce: 0
   _responceable: 
+  references:
+    version: 1
+    00000000:
+      type: {class: PhysicsAttack, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}
+      data:
+        _value: 0
+        _damageValueType: 0

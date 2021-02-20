@@ -15,10 +15,16 @@ MonoBehaviour:
   _id: 1
   _name: "\u52A0\u8B77\u6CD5"
   _effectText: "\u3042\u306A\u305F\u306E\u9632\u5FA1\u529B\u306FX\u306B\u306A\u308B\u3002\\nX\u306F\u3001\u3042\u306A\u305F\u304C\u652F\u6255\u3063\u305F\u30B3\u30B9\u30C8\u306B\u7B49\u3057\u3044\u3002"
-  _effectTiming: 3
+  _effects:
+  - id: 0
   _cost: -1
   _limited: 0
   _symbol: 0
-  _attackPower: 0
   _canResponce: 1
   _responceable: 
+  references:
+    version: 1
+    00000000:
+      type: {class: AddDefence, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}
+      data:
+        _value: 0

@@ -18,12 +18,10 @@ namespace BladeRondo.Game.Component
         public int ID { get; private set; }
         public string Name { get; private set; }
         public string EffectText { get; private set; }
-        public EffectTiming EffectTiming { get; private set; }
         public IEnumerable<IEffect> Effects { get; private set; }
         public int Cost { get; private set; }
         public bool Limited { get; private set; }
         public CardType Symbol { get; private set; }
-        public int AttackPower { get; private set; }
         public bool CanResponce { get; private set; }
         public IEnumerable<CardType> Responceable { get; private set; }
         public Sprite Face { get; private set; }
@@ -36,12 +34,10 @@ namespace BladeRondo.Game.Component
             ID = data.ID;
             Name = data.Name;
             EffectText = data.EffectText;
-            EffectTiming = data.EffectTiming;
             Effects = data.Effects;
             Cost = data.Cost;
             Limited = data.Limited;
             Symbol = data.Symbol;
-            AttackPower = data.AttackPower;
             CanResponce = data.CanResponce;
             Responceable = data.Responceable;
             var face = Resources.Load("Textures/" + id.ToString(), typeof(Sprite)) as Sprite;

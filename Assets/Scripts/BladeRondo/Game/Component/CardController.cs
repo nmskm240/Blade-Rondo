@@ -39,17 +39,6 @@ namespace BladeRondo.Game.Component
             this.transform.localScale = new Vector3(1,1,1);
         }
 
-        private void OnTransformParentChanged() 
-        {
-            var photonView = GetComponent<PhotonView>();
-            var card = GetComponent<Card>();
-            var symbol = card.Symbol;
-            var cardView = GetComponent<CardView>();
-            var ownerCheck = photonView.IsMine || !card.InHand;
-            var trapCheck = card.InHand || symbol != CardType.Trap;
-            cardView.ToggleFace(ownerCheck && trapCheck); 
-        }
-
         [PunRPC]
         public void ChangeParent(string newParentName)
         {

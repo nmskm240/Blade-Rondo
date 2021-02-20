@@ -32,7 +32,6 @@ package BladeRondo
                 +<<property>>Cost:int{private set}
                 +<<property>>Limited:bool{private set}
                 +<<property>>Symbol:CardType{private set}
-                +<<property>>AttackPower:int{private set}
                 +<<property>>CanResponce{private set}
                 +<<property>>Responceable:IEnumerable<CardTYpe>{private set}
                 +<<property>>Face:Sprite{private set}
@@ -53,7 +52,6 @@ package BladeRondo
                 -_cost:int
                 -_limited:bool
                 -_symbol:CardType
-                -_attackPower:int
                 -_canResponce:bool
                 -_responceable:List<CardType>
                 +<<property>>ID:int{get only}
@@ -64,13 +62,13 @@ package BladeRondo
                 +<<property>>Cost:int{get only}
                 +<<property>>Limited:bool{get only}
                 +<<property>>Symbol:CardType{get only}
-                +<<property>>AttackPower:int{get only}
                 +<<property>>CanResponce:bool{get only}
                 +<<property>>Responceable:IEnumerable<CardType>{get only}
             }
             class CardView
             {
-                -_faceDetail:GameObject
+                -_name:Text
+                -_cost:Text
                 -_back:Sprite
                 -_face:Image
                 +Init(card:Card):void
@@ -178,6 +176,7 @@ package BladeRondo
             -_observers:List<IObserver<T>>
             +AddObserver(observer:IObserver<T>)
             +RemoveObserver(observer:IObserver<T>)
+            +ContainsObserver(observer:IObserver<T>)
             +NotifyObservers(pushData:T):void
         }
         class DebugManager
