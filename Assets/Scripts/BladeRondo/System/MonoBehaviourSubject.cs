@@ -36,8 +36,7 @@ namespace BladeRondo.System
             _observers.Clear();
         }
 
-        [PunRPC]
-        protected void NotifyObservers(T pushData)
+        public void NotifyObservers(T pushData)
         {
             foreach (var observer in _observers)
             {

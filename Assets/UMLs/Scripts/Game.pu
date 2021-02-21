@@ -21,6 +21,7 @@ package BladeRondo
                     +CanActivate():bool
                     +Activate():void
                 }
+                class 各種効果
             }
             class Card
             {
@@ -129,6 +130,18 @@ package BladeRondo
                 class Deck
                 class TurnPlayer
             }
+        }
+        package RaiseEvents
+        {
+            abstract class RaiseEventPractitioner
+            {
+                +IOnEventCallback(photonEvent:EventData):void
+            }
+            enum RaiseEventType
+            {
+                PlayCard,
+            }
+            class PlayCard
         }
         interface IConnecter
         class ServerConnecter
@@ -265,11 +278,14 @@ IDragHandler <|.down. CardController
 IEndDrafHandler <|.down. CardController
 IDropHandler <|.down. CardDropArea
 
+IEffect <|.left. 各種効果
+
 IConnecter <|.. ServerConnecter
 IConnecter <|.. RoomConnecter
 IConnecter <|.. GameConnecter
 
 PlayerParameters -- Counter
 
+RaiseEventPractitioner <|-- PlayCard
 
 @enduml
