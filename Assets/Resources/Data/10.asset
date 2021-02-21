@@ -15,9 +15,9 @@ MonoBehaviour:
   _id: 10
   _name: "\u30AC\u30A6\u30E9\u30DF\u30A2\u30BA\u30DE"
   _effectText: "\u4EE3\u511F\uFF1A\u3042\u306A\u305F\u306F3\u30C0\u30E1\u30FC\u30B8\u3092\u53D7\u3051\u308B\u3002"
-  _effectTiming: 2
   _effects:
   - id: 0
+  - id: 1
   _cost: 2
   _limited: 0
   _symbol: 2
@@ -26,6 +26,10 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
+      type: {class: AddHP, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}
+      data:
+        _value: -3
+    00000001:
       type: {class: MagicAttack, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}
       data:
         _value: 3

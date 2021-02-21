@@ -41,7 +41,7 @@ namespace BladeRondo.Game.Effect
                     attackPower = _value;
                     break;
                 case DamageValueType.IgnoreDefence:
-                    attackPower = _value;
+                    attackPower = attackPlayer.GetAttack();
                     defencePower = 0;
                     break;
             }

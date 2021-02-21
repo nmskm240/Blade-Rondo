@@ -15,10 +15,25 @@ MonoBehaviour:
   _id: 6
   _name: "\u304A\u6C17\u306E\u6BD2\u306E\u5203"
   _effectText: "\u8FFD\u52A0\uFF1A\u76F8\u624B\u306B\u6BD2\u3092\u4ED8\u4E0E\u3059\u308B\u3002"
-  _effectTiming: 10
+  _effects:
+  - id: 0
+  - id: 1
   _cost: 3
   _limited: 1
   _symbol: 1
-  _attackPower: 0
   _canResponce: 1
   _responceable: 
+  references:
+    version: 1
+    00000000:
+      type: {class: PhysicsAttack, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}
+      data:
+        _value: 0
+        _damageValueType: 0
+    00000001:
+      type: {class: AttachEffect, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}
+      data:
+        _attachEffect:
+          id: 2
+    00000002:
+      type: {class: Poision, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}

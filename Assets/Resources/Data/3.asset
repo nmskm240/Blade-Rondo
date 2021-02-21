@@ -15,7 +15,6 @@ MonoBehaviour:
   _id: 3
   _name: "\u65AC\u6483\u5263"
   _effectText: 
-  _effectTiming: 0
   _effects:
   - id: 0
   _cost: 1
@@ -29,4 +28,4 @@ MonoBehaviour:
       type: {class: PhysicsAttack, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}
       data:
         _value: 0
-        _damageValueType: 1
+        _damageValueType: 0
