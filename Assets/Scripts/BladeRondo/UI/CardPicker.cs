@@ -17,6 +17,8 @@ namespace BladeRondo.UI
 
         private List<int> _pickedCards;
         private IFactory<GameObject> _checkmarkFactory;
+        private int _pickMax = 1;
+        private int _pickMin = 1;
 
         private void Awake()
         {
@@ -60,6 +62,12 @@ namespace BladeRondo.UI
             }
         }
 
+        public void SetPickMinAndMax(int min, int max)
+        {
+            _pickMax = max;
+            _pickMin = min;
+        }
+
         public void Show()
         {
             this.gameObject.SetActive(true);
@@ -80,10 +88,14 @@ namespace BladeRondo.UI
 
         public void OnClickCompletButton()
         {
-            PhotonNetwork.LocalPlayer.SetHand(_pickedCards);
-            PhotonNetwork.LocalPlayer.SetStartCheck(false);
-            Hide();
-            DestroyAll();
+            if(_pickMin <= _pickedCards.Count && _pickedCards.Count <= _pickMax)
+            {
+                PhotonNetwork.LocalPlayer.SetPickCards(_pickedCards);
+                PhotonNetwork.LocalPlayer.SetStartCheck(false);
+                Hide();
+                DestroyAll();
+                _pickedCards.Clear();
+            }
         }
     }
 }

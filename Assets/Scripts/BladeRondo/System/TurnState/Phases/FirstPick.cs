@@ -20,9 +20,10 @@ namespace BladeRondo.System.TurnState.Phases
             for(int i = 0; i < 15; i++)
             {
                 var target = (PhotonNetwork.IsMasterClient) ? i : (deck.Count - 1) - i;
-                cards.Add(cardFactory.Create(deck[target].ToString()));
+                cards.Add(cardFactory.Create(deck[target]));
             }
             cardPicker.SetOptions(cards);
+            cardPicker.SetPickMinAndMax(7, 7);
             cardPicker.Show();
         }
     }

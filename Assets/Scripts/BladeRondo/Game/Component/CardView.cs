@@ -8,9 +8,7 @@ namespace BladeRondo.Game.Component
     public class CardView : MonoBehaviour 
     {
         [SerializeField]
-        private Text _name;
-        [SerializeField]
-        private Text _cost;
+        private GameObject _cardDetail;
         [SerializeField]
         private Image _face;
         [SerializeField]
@@ -20,15 +18,20 @@ namespace BladeRondo.Game.Component
 
         public void Init(Card card)
         {
-            _name.text = card.Name;
-            _cost.text = card.Cost.ToString();
+            var name = _cardDetail.transform.Find("Name").gameObject.GetComponent<Text>();
+            var icon = _cardDetail.transform.Find("Icon").gameObject.GetComponent<Image>();
+            var cost = _cardDetail.transform.Find("Cost").transform.Find("Text").gameObject.GetComponent<Text>();
+            var limited = _cardDetail.transform.Find("Limited").gameObject.GetComponent<Image>();
+            name.text = card.Name;
+            icon.sprite = Resources.Load("Textures/Card/Icon/" + card.Symbol.ToString(), typeof(Sprite)) as Sprite;
+            cost.text = card.Cost.ToString();
+            limited.enabled = card.Limited;
         }
 
         public void ToggleFace(bool isFace)
         {
             _face.sprite = (isFace) ? GetComponent<Card>().Face : _back;
-            _name.enabled = isFace;
-            _cost.enabled = isFace;
+            _cardDetail.SetActive(isFace);
         }
 
         private void OnTransformParentChanged() 

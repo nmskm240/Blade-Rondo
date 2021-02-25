@@ -6,7 +6,7 @@ namespace BladeRondo.Game.Effect
     public class Summon : IEffect
     {
         [SerializeField]
-        private string _summonId;
+        private int _summonId;
 
         public bool CanActivate()
         {

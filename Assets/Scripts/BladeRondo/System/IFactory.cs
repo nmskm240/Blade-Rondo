@@ -2,6 +2,6 @@ namespace BladeRondo.System
 {
     public interface IFactory<T> 
     {
-        T Create(string str = null);
+        T Create(int i = 0);
     }
 }

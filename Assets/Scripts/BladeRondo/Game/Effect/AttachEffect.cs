@@ -4,7 +4,7 @@ namespace BladeRondo.Game.Effect
 {
     public class AttachEffect : IEffect
     {
-        private enum Target
+        private enum TargetType
         {
             Player,
             Card,
@@ -12,6 +12,9 @@ namespace BladeRondo.Game.Effect
 
         [SerializeReference, SubclassSelector]
         private IEffect _attachEffect;
+
+        [SerializeField]
+        private TargetType _target;
 
         public bool CanActivate()
         {

@@ -7,11 +7,11 @@ using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 namespace BladeRondo.Network.CustomProperties.Players
 {
-    public static class Hand
+    public static class PickCards
     {
-        public static readonly string _handPros = "Hand";
+        public static readonly string _pickCardsPros = "PickCards";
 
-        public static void SetHand(this Player player, IEnumerable<int> Hand) 
+        public static void SetPickCards(this Player player, IEnumerable<int> pickCards) 
         {
             if(player == null || player.CustomProperties == null)
             {
@@ -19,18 +19,18 @@ namespace BladeRondo.Network.CustomProperties.Players
             }
 
             var hashtable = new Hashtable();
-            hashtable[_handPros] = Hand.ToArray();
+            hashtable[_pickCardsPros] = pickCards.ToArray();
             player.SetCustomProperties(hashtable);
         }
 
-        public static List<int> GetHand(this Player player)
+        public static List<int> GetPickCards(this Player player)
         {
-            if(player == null || player.CustomProperties == null || !player.CustomProperties.ContainsKey(_handPros))
+            if(player == null || player.CustomProperties == null || !player.CustomProperties.ContainsKey(_pickCardsPros))
             {
                 return null;
             }
 
-            var cards = (int[])player.CustomProperties[_handPros];
+            var cards = (int[])player.CustomProperties[_pickCardsPros];
             return cards.ToList<int>();
         }
     }

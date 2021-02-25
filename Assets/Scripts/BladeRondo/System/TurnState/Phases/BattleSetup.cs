@@ -28,14 +28,14 @@ namespace BladeRondo.System.TurnState.Phases
             var hand = players.transform.Find("Player").transform.Find("Hand").gameObject;
             var startPlayer = PhotonNetwork.CurrentRoom.GetTurnPlayer();
 
-            foreach(var id in PhotonNetwork.LocalPlayer.GetHand())
+            foreach(var id in PhotonNetwork.LocalPlayer.GetPickCards())
             {
-                var card = cardFactory.Create(id.ToString());
+                var card = cardFactory.Create(id);
                 card.transform.SetParent(hand.transform);
             }
             foreach(var id in (startPlayer == PhotonNetwork.LocalPlayer) ? FirstsBreathCards : SecondsBreathCards)
             {
-                var card = cardFactory.Create(id.ToString());
+                var card = cardFactory.Create(id);
                 card.transform.SetParent(hand.transform);
             }
             PhotonNetwork.LocalPlayer.SetHP(15);

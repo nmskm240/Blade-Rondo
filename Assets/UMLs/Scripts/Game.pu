@@ -122,7 +122,7 @@ package BladeRondo
                 class "Attack "
                 class Defence
                 class Voltage
-                class Hand
+                class PickCards
                 class StartCheck
             }
             package Rooms
@@ -174,7 +174,7 @@ package BladeRondo
         }
         interface IFactory<T>
         {
-            +Create(str:string):T
+            +Create(i:int):T
         }
         interface IState
         {
