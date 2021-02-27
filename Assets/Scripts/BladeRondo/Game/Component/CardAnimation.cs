@@ -1,5 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
+using BladeRondo.Network.CustomProperties.Rooms;
 
 namespace BladeRondo.Game.Component
 {    
@@ -15,9 +18,10 @@ namespace BladeRondo.Game.Component
         private void OnTransformParentChanged() 
         {
             var card = GetComponent<Card>();
-            var playable = this.transform.parent.gameObject.name == "Hand" && card.CanPlay;
-            GetComponent<Outline>().enabled = playable;
-            _animator.SetBool("Playable", playable);
+            var isPlayable = this.transform.parent.gameObject.name == "Hand" && card.CanPlay;
+            var isPlayerTurn = PhotonNetwork.CurrentRoom.GetTurnPlayer() == PhotonNetwork.LocalPlayer;
+            GetComponent<Outline>().enabled = isPlayable;
+            _animator.SetBool("Playable", isPlayable && isPlayerTurn);
         }
     }
 }

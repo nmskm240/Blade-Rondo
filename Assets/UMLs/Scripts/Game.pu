@@ -124,6 +124,7 @@ package BladeRondo
                 class Voltage
                 class PickCards
                 class StartCheck
+                class AttachedEffects;
             }
             package Rooms
             {
@@ -220,7 +221,7 @@ package BladeRondo
         {
             -_playArea:PlayArea
         }
-        class RoomIdViewer
+        class RoomIDViewer
         class PlayerNode
         class GameStartChecker
         class Counter

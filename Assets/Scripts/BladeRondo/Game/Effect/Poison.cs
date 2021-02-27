@@ -1,6 +1,8 @@
+using UnityEngine;
+
 namespace BladeRondo.Game.Effect
 {
-    public class Poision : IEffect
+    public class Poison : IEffect
     {
         public bool CanActivate()
         {
@@ -9,7 +11,7 @@ namespace BladeRondo.Game.Effect
 
         public void Activate()
         {
-            
+            Debug.Log("Poison!");
         }
     }
 }

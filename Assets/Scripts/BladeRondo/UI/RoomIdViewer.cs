@@ -4,14 +4,14 @@ using Photon.Pun;
 
 namespace BladeRondo.UI
 {    
-    public class RoomIdViewer : MonoBehaviour 
+    public class RoomIDViewer : MonoBehaviour 
     {
         [SerializeField]
-        private Text _roomId;
+        private Text _roomID;
 
         private void Awake()
         {
-            _roomId.text = PhotonNetwork.CurrentRoom.Name;
+            _roomID.text = PhotonNetwork.CurrentRoom.Name;
         }
     }
 }
