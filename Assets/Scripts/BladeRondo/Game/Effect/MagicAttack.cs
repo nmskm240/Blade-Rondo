@@ -42,7 +42,7 @@ namespace BladeRondo.Game.Effect
                     damage = defencePlayer.GetHP() / 2;
                     break;
             }
-            defencePlayer.AddHP(damage);
+            defencePlayer.AddHP(-1 * damage);
         }
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace BladeRondo.Game.Effect
+namespace BladeRondo.Game.Effect.Attachable
 {
     public class Poison : IEffect
     {

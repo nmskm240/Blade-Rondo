@@ -30,18 +30,6 @@ namespace BladeRondo.Network.CustomProperties.Players
             player.SetCustomProperties(hashtable);
         }
 
-        public static void SetAttachEffect(this Player player, IEffect effect)
-        {
-            if (player == null || player.CustomProperties == null)
-            {
-                return;
-            }
-
-            var hashtable = new Hashtable();
-            hashtable[_attachedeffectPros] = effect.GetType().FullName;
-            player.SetCustomProperties(hashtable);
-        }
-
         public static List<IEffect> GetAttachedEffects(this Player player)
         {
             if (player == null || player.CustomProperties == null || !player.CustomProperties.ContainsKey(_attachedeffectPros))
@@ -51,12 +39,29 @@ namespace BladeRondo.Network.CustomProperties.Players
 
             var attachedEffects = new List<IEffect>();
             var effectNames = player.CustomProperties[_attachedeffectPros] as string[];
+            UnityEngine.Debug.Log(player.CustomProperties[_attachedeffectPros].GetType());
             foreach (var effectName in effectNames)
             {
                 var type = Type.GetType(effectName);
                 attachedEffects.Add(Activator.CreateInstance(type) as IEffect);
             }
             return attachedEffects;
+        }
+
+        public static void DetachEffect(this Player player, IEffect effect)
+        {
+            if (player == null || player.CustomProperties == null)
+            {
+                return;
+            }
+
+            var currentAttachedEffects = player.GetAttachedEffects();
+            var targetEffect = currentAttachedEffects.FirstOrDefault(e => e.GetType().Name == effect.GetType().Name);
+            if(targetEffect != null)
+            {
+                currentAttachedEffects.Remove(targetEffect);
+                player.SetAttachEffects(currentAttachedEffects);
+            }
         }
 
         public static void AttachEffect(this Player player, IEffect effect)
@@ -66,17 +71,9 @@ namespace BladeRondo.Network.CustomProperties.Players
                 return;
             }
 
-            var currentAttachedEffects = player.GetAttachedEffects();
-            if (currentAttachedEffects == null)
-            {
-                player.SetAttachEffect(effect);
-            }
-            else
-            {
-                currentAttachedEffects.Add(effect);
-                player.SetAttachEffects(currentAttachedEffects);
-            }
-
+            var currentAttachedEffects = player.GetAttachedEffects() ?? new List<IEffect>();
+            currentAttachedEffects.Add(effect);
+            player.SetAttachEffects(currentAttachedEffects);
         }
     }
 }

@@ -18,6 +18,8 @@ MonoBehaviour:
   _effects:
   - id: 0
   - id: 1
+  - id: 1
+  - id: 2
   _cost: 3
   _limited: 1
   _symbol: 1
@@ -31,4 +33,12 @@ MonoBehaviour:
         _value: 0
         _damageValueType: 0
     00000001:
-      type: {class: , ns: , asm: }
+      type: {class: CreateOption, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}
+      data:
+        _createCards: 
+        _pickMax: 1
+        _pickMin: 1
+        _pickOption: 1
+        _target: 1
+    00000002:
+      type: {class: DiscardPickCard, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}

@@ -46,7 +46,7 @@ namespace BladeRondo.Game.Effect
                     break;
             }
             damage = (attackPower - defencePower) < 0 ? 0 : attackPower - defencePower;
-            defencePlayer.AddHP(damage);
+            defencePlayer.AddHP(-1 * damage);
         }
     }
 }

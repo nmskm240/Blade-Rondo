@@ -33,7 +33,7 @@ namespace BladeRondo.Game.Component
             var data = info.photonView.InstantiationData;
             var owner = (info.photonView.IsMine) ? "Player" : "Enemy";
             var card = GetComponent<Card>();
-            card.Init(int.Parse((string)data[0]));
+            card.Init((int)data[0]);
             GetComponent<CardView>().Init(card);
             this.transform.SetParent(players.transform.Find(owner).transform.Find("Hand"));
             this.transform.localScale = new Vector3(1,1,1);

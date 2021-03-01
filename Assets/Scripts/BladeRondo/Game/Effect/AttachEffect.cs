@@ -1,4 +1,7 @@
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
+using BladeRondo.Network.CustomProperties.Players;
 
 namespace BladeRondo.Game.Effect
 {
@@ -7,7 +10,7 @@ namespace BladeRondo.Game.Effect
         private enum TargetType
         {
             Player,
-            Card,
+            Enemy,
         }
 
         [SerializeReference, SubclassSelector]
@@ -23,7 +26,8 @@ namespace BladeRondo.Game.Effect
 
         public void Activate()
         {
-
+            var target = (_target == TargetType.Player) ? PhotonNetwork.LocalPlayer : PhotonNetwork.PlayerListOthers[0];
+            target.AttachEffect(_attachEffect);
         }
     }
 }

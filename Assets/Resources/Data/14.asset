@@ -29,5 +29,6 @@ MonoBehaviour:
       data:
         _attachEffect:
           id: 1
+        _target: 0
     00000001:
-      type: {class: , ns: , asm: }
+      type: {class: Phosphorescent, ns: BladeRondo.Game.Effect.Attachable, asm: Assembly-CSharp}

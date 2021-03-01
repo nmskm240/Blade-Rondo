@@ -25,10 +25,4 @@ MonoBehaviour:
   references:
     version: 1
     00000000:
-      type: {class: AttachEffect, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}
-      data:
-        _attachEffect:
-          id: 1
-        _target: 0
-    00000001:
-      type: {class: Poison, ns: BladeRondo.Game.Effect, asm: Assembly-CSharp}
+      type: {class: Poison, ns: BladeRondo.Game.Effect.Attachable, asm: Assembly-CSharp}

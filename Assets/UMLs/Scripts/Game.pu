@@ -16,6 +16,10 @@ package BladeRondo
             ' }
             package Effect
             {
+                package Attachable
+                {
+                    class 各種付与効果
+                }
                 interface IEffect
                 {
                     +CanActivate():bool
@@ -225,6 +229,7 @@ package BladeRondo
         class PlayerNode
         class GameStartChecker
         class Counter
+        class PlayerAttachedEffects
         class PlayerParameters
         class CardPicker
         {
@@ -280,6 +285,7 @@ IEndDrafHandler <|.down. CardController
 IDropHandler <|.down. CardDropArea
 
 IEffect <|.left. 各種効果
+IEffect <|.left. 各種付与効果
 
 IConnecter <|.. ServerConnecter
 IConnecter <|.. RoomConnecter
@@ -288,5 +294,15 @@ IConnecter <|.. GameConnecter
 PlayerParameters -- Counter
 
 RaiseEventPractitioner <|-- PlayCard
+
+Player -down- HP : Extension Methods
+Player -down- "Attack " : Extension Methods
+Player -down- Defence : Extension Methods
+Player -down- PickCards : Extension Methods
+Player -down- StartCheck : Extension Methods
+Player -down- Voltage : Extension Methods
+
+Room -up- Deck : Extension Methods
+Room -up- TurnPlayer : Extension Methods
 
 @enduml
